@@ -126,9 +126,7 @@ const router = createBrowserRouter(
 				/>
 			</Route>
 
-			<Route
-				path=''
-				element={<PrivateRoute />}>
+			<Route element={<PrivateRoute />}>
 				<Route
 					path='/collection/:id'
 					element={<CollectionScreen />}
@@ -151,9 +149,7 @@ const router = createBrowserRouter(
 				</Route>
 			</Route>
 
-			<Route
-				path=''
-				element={<AdminRoute />}>
+			<Route element={<AdminRoute />}>
 				<Route
 					path='/admin/documentlist'
 					element={<DocumentListScreen />}
