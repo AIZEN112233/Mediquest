@@ -1,0 +1,16 @@
+export { default as HomeScreen } from "./homeScreen/HomeScreen.jsx";
+export { default as ExamsScreen } from "./exams/ExamsScreen";
+export { default as CoursesScreen } from "./exams/CoursesScreen";
+export { default as SummariesScreen } from "./exams/SummariesScreen";
+export { default as SearchScreen } from "./exams/SearchScreen";
+export { default as DocumentScreen } from "./DocumentScreen";
+export { default as LoginScreen } from "./loginScreen/LoginScreen";
+export { default as RegisterScreen } from "./RegisterScreen/RegisterScreen";
+export { default as OTPinput } from "./OTPinput";
+export { default as ResetPassword } from "./ResetPassword";
+export { default as CollectionScreen } from "./CollectionScreen";
+export { default as ProfileScreen } from "./profile/ProfileScreen";
+export { default as DocumentListScreen } from "./admin/DocumentListScreen";
+export { default as UserListScreen } from "./admin/UserListScreen";
+export { default as UserEditScreen } from "./admin/UserEditScreen";
+export { default as DocumentEditScreen } from "./admin/DocumentEditScreen";
