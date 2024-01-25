@@ -5,7 +5,7 @@ const StyledButton = ({ text, type }) => {
   return (
     <div>
       <button
-        className='flex items-center gap-2 rounded-md bg-primary-green px-10 py-3 text-base font-semibold text-black'
+        className='flex items-center gap-2 rounded-md bg-primary-green px-10 py-3 text-base font-semibold text-black duration-500 hover:scale-110 hover:bg-white hover:text-primary-green'
         type={type}
       >
         {text} <FaArrowRightLong color='black' size={23} />
