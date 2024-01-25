@@ -2,19 +2,20 @@
   overflow: scroll;
   overflow: hidden !important;
 }
+
 .login-container .login-content {
   display: flex;
   align-items: center;
   padding: 2rem;
 }
-.login-container .login-bg {
-  padding: 0 !important;
-  padding-top: 85px;
-  margin: 0 !important;
+
+.login-bg {
   background-image: url("../../assets/login_bg.png");
-  height: 100vh;
-  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+
 }
+
 .login-container .login-content .inputs {
   background-color: black;
   border: 1px solid white;
@@ -22,6 +23,7 @@
   border-radius: 3px;
   margin-bottom: 10px;
 }
+
 .inputs::placeholder {
   color: white;
   opacity: 0.9;

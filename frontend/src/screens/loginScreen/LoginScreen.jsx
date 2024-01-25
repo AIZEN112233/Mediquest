@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
 import StyledButton from "../../components/Button";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import {
   useLoginMutation,
   useSendOTPMutation,
@@ -17,6 +18,8 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [isEyeToggled, setIsEyeToggeled] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -27,7 +30,7 @@ const LoginScreen = () => {
 
   const { search } = useLocation();
   const sp = new URLSearchParams(search);
-  const redirect = sp.get('redirect') || '/';
+  const redirect = sp.get("redirect") || "/";
 
   useEffect(() => {
     if (userInfoMediquest) {
@@ -64,82 +67,88 @@ const LoginScreen = () => {
   };
 
   return (
-    <Row className="login-container ">
-      <Col className="login-content mt-5" md={6}>
-        <FormContainer>
-          <h1 className="white">Welcome</h1>
-          <p className="white">Sign In to continue to Medi<span style={{color:"#75dab4"}}>Q</span>uest</p>
-          <Form onSubmit={submitHandler}>
-            <Form.Group className="my-2 white mt-3" controlId="email">
-              <Form.Control
-                className="inputs"
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group className="my-2 " controlId="password">
-              <Form.Control
-                className="inputs"
-                type="password"
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group className="mx-auto mb-3">
-              <p
-                id="forgotPassword"
-                onClick={() => navigateToOTP()}
-                style={{
-                  color: "#75dab4",
-                  marginBottom: "0.5rem",
-                  cursor: "pointer",
-                  textDecoration: "underline",
-                }}
-              >
-                {" "}
-                Forgot Password?
-              </p>
-            </Form.Group>
-
-            <StyledButton text="LOGIN" type="submit" />
-
-            {loadingOTP && <Loader style={{ color: "white !important" }} />}
-            {isLoading && (
-              <Spinner
-                animation="border"
-                role="status"
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  margin: "auto",
-                  display: "block",
-                  color:"white"
-                }}
-              ></Spinner>
+    <div className='login-bg grid h-screen place-items-center'>
+      <div className='flex flex-col gap-6 rounded-md  bg-[#16161664] px-[54px] py-[28px] text-center'>
+        <div className='flex flex-col gap-3'>
+          <h1 className='font-playFair text-[64px] font-[500]'>Welcome</h1>
+          <p className='text-[24px] font-[300]'>
+            Login to continue to{" "}
+            <span className='font-playFair'>
+              Medi<span className='font-playFair text-primary-green'>Q</span>
+              uest
+            </span>
+          </p>
+        </div>
+        <form className='flex flex-col gap-6'>
+          <input
+            type='text'
+            value={email}
+            placeholder='Email'
+            className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 focus-within:border-primary-green focus-within:outline-none'
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <div className='relative'>
+            <input
+              type={isEyeToggled ? "text" : "password"}
+              value={password}
+              placeholder='Password'
+              className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 focus-within:border-primary-green focus-within:outline-none'
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {isEyeToggled ? (
+              <IoEyeOffOutline
+                onClick={() => setIsEyeToggeled(false)}
+                className='absolute right-5 top-1/2 -translate-y-1/2 text-[24px] hover:text-primary-green'
+              />
+            ) : (
+              <IoEyeOutline
+                onClick={() => setIsEyeToggeled(true)}
+                className='absolute right-5 top-1/2 -translate-y-1/2 text-[24px] hover:text-primary-green'
+              />
             )}
-          </Form>
-
-          <Row className="py-3">
-            <Col className="white">
-              Don't have an account?{" "}
-              <Link
-               to={redirect ? `/register?redirect=${redirect}` : '/register'}
-                style={{ color: "#75dab4" }}
-              >
-                {" "}
-                Register
-              </Link>
-            </Col>
-          </Row>
-        </FormContainer>
-      </Col>
-      <Col md={6} className="login-bg"></Col>
-    </Row>
+          </div>
+          <p
+            id='forgotPassword'
+            className='cursor-pointer text-primary-green underline'
+            onClick={() => navigateToOTP()}
+          >
+            Forgot Password?
+          </p>
+        </form>
+        <div className='mx-auto'>
+          <StyledButton text='START LEARNING' type='submit' />
+        </div>
+        {loadingOTP && <Loader style={{ color: "white !important" }} />}
+        {isLoading && (
+          <Spinner
+            animation='border'
+            role='status'
+            style={{
+              width: "100px",
+              height: "100px",
+              margin: "auto",
+              display: "block",
+              color: "white",
+            }}
+          ></Spinner>
+        )}
+        <Row className='py-3'>
+          <Col className='white'>
+            Don't have an account?{" "}
+            <Link
+              to={redirect ? `/register?redirect=${redirect}` : "/register"}
+              style={{ color: "#75dab4" }}
+            >
+              {" "}
+              Register
+            </Link>
+          </Col>
+        </Row>
+      </div>
+    </div>
   );
 };
 
 export default LoginScreen;
+
+// font-weight: 300;
