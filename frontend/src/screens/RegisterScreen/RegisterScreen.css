@@ -3,7 +3,10 @@
   margin: 0 !important;
   background-image: url("../../assets/register_bg.png");
   height: 100vh;
+  background-position: center;
+  background-size: cover;
 }
+
 .register-form-container {
   display: flex;
   align-items: center;
@@ -12,11 +15,11 @@
   text-align: center;
   padding-top: 5rem;
 }
+
 .register-container .register-content {
-  background-color: black;
   border-radius: 4px;
-  height: 70%;
 }
+
 .register-container .inputs {
   background-color: black;
   border: 1px solid white;
@@ -24,6 +27,7 @@
   border-radius: 3px;
   margin-bottom: 10px;
 }
+
 .register-container .inputs::placeholder {
   color: white;
   opacity: 0.9;
