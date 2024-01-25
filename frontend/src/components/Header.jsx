@@ -1,22 +1,15 @@
-import React from "react";
-import {
-  Navbar,
-  Nav,
-  Container,
-  NavDropdown,
-  Image,
-  NavItem,
-} from "react-bootstrap";
+import React, { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
-import { LinkContainer } from "react-router-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import SearchBox from "./SearchBox";
+import { Link, useNavigate } from "react-router-dom";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
+import { IoMenuSharp } from "react-icons/io5";
+import { HiArrowLongLeft } from "react-icons/hi2";
 
 const Header = () => {
   const { userInfoMediquest } = useSelector((state) => state.auth);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -33,133 +26,85 @@ const Header = () => {
     }
   };
 
-  const dark = {
-    backgroundColor: "#0d0d0d",
-  };
-  const white = {
-    color: "white",
-  };
-  const bolder = {
-    fontWeight: "bolder",
-  };
-
   return (
-    <header style={{ background: "#0d0d0d", position: "fixed", top: "0", width:"100%", zIndex:99 }}>
-      <Navbar variant="dark" expand="lg" collapseOnSelect style={dark}>
-        <Container>
-          <LinkContainer to="/">
-            <Navbar.Brand className="logo bolder">
-              Medi<span style={{ color: "#75dab4" }}>Q</span>uest
-            </Navbar.Brand>
-          </LinkContainer>
+    <header className='fixed top-0 z-50 w-full bg-gray-900'>
+      <nav className='container mx-auto flex items-center justify-between py-4'>
+        <div className='flex items-center'>
+          <Link
+            to='/'
+            className='font-playFair text-3xl font-bold text-white max-md:text-lg'
+          >
+            Medi<span className='font-playFair text-primary-green'>Q</span>uest
+          </Link>
+        </div>
 
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto m-auto">
-              <LinkContainer
-                className="white mx-2"
-                to="/exams"
-                style={{ cursor: "pointer" }}
-              >
-                <NavItem eventKey={1}>Exams</NavItem>
-              </LinkContainer>
-              <LinkContainer
-                className="white mx-2"
-                to="/courses"
-                style={{ cursor: "pointer" }}
-              >
-                <NavItem eventKey={2}>Courses</NavItem>
-              </LinkContainer>
-              <LinkContainer
-                className="white mx-2"
-                to="/summaries"
-                style={{ cursor: "pointer" }}
-              >
-                <NavItem eventKey={3}>Summaries</NavItem>
-              </LinkContainer>
-            </Nav>
-            <SearchBox />
-             {/* Admin Links */}
-             {userInfoMediquest && userInfoMediquest.isAdmin && (
-              <NavDropdown
-                title="Dashboard"
-                id="adminDashboard"
-                className="mx-2"
-                style={{
-                  cursor: "pointer",
-                  color: "white",
-                 
-                  fontWeight:"bold",
-                }}
-              >
-                <LinkContainer to="/admin/documentlist">
-                  <NavDropdown.Item>Documents</NavDropdown.Item>
-                </LinkContainer>
-                <LinkContainer to="/admin/userlist">
-                  <NavDropdown.Item>Users</NavDropdown.Item>
-                </LinkContainer>
-              </NavDropdown>
-            )}
-           
-            {userInfoMediquest ? (
-              <>
-                <NavDropdown
-                  title={userInfoMediquest.name}
-                  id="username"
-                  className="mx-2"
-                  style={{
-                    color: "#75dab4",
-                    marginRight: "0.9rem",
-                    
-                    fontWeight: "bold",
-                  }}
-                >
-                  <LinkContainer to="/profile">
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <LinkContainer to="/profile" style={{ cursor: "pointer" }}>
-                  <Nav.Link>
-                    <Image
-                      src={userInfoMediquest.image}
-                      className="mx-2"
-                      alt="user image"
-                      style={{
-                        width: "30px",
-                        height: "30px",
-                        borderRadius: userInfoMediquest.image === '/images/user_image.png' ? '0' : '50%',
-                      }}
-                    />
-                  </Nav.Link>
-                </LinkContainer>
-              </>
-            ) : (
-              <LinkContainer
-                to="/login"
-                style={{
-                  cursor: "pointer",
-                  color: "white",
-                  marginLeft: "0.5rem",
-                }}
-              >
-                <Nav.Link>
-                  Sign In
-                  <FaUserCircle
-                    style={{ marginLeft: "0.3rem" }}
-                    color="white"
-                    size={30}
-                  />
-                </Nav.Link>
-              </LinkContainer>
-            )}
-
-            {"  "}
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+        <div
+          className={`flex items-center space-x-4 max-md:fixed max-md:inset-0 max-md:h-screen max-md:w-screen max-md:flex-col max-md:justify-center max-md:gap-10 max-md:backdrop-blur ${isMenuOpen ? "max-md:translate-x-0" : "max-md:translate-x-full"}`}
+        >
+          <Link
+            to='/exams'
+            className='cursor-pointer text-white max-md:text-2xl max-md:font-[600]'
+          >
+            Exams
+          </Link>
+          <Link
+            to='/courses'
+            className='cursor-pointer text-white max-md:text-2xl max-md:font-[600]'
+          >
+            Courses
+          </Link>
+          <Link
+            to='/summaries'
+            className='cursor-pointer text-white max-md:text-2xl max-md:font-[600]'
+          >
+            Summaries
+          </Link>
+          {/* Admin Links */}
+          {userInfoMediquest && userInfoMediquest.isAdmin && (
+            <div className='group relative'>
+              <button className='cursor-pointer text-white'>Dashboard</button>
+              <div className='absolute hidden space-y-2 bg-gray-800 p-2 group-hover:block'>
+                <Link to='/admin/documentlist'>Documents</Link>
+                <Link to='/admin/userlist'>Users</Link>
+              </div>
+            </div>
+          )}
+          {userInfoMediquest ? (
+            <div className='flex items-center space-x-2'>
+              <div className='group relative'>
+                <button className='cursor-pointer text-white'>
+                  {userInfoMediquest.name}
+                </button>
+                <div className='absolute hidden space-y-2 bg-gray-800 p-2 group-hover:block'>
+                  <Link to='/profile'>Profile</Link>
+                  <button onClick={logoutHandler}>Logout</button>
+                </div>
+              </div>
+              <Link to='/profile' className='cursor-pointer'>
+                <img
+                  src={userInfoMediquest.image}
+                  alt='user image'
+                  className='h-8 w-8 rounded-full'
+                />
+              </Link>
+            </div>
+          ) : (
+            <Link to='/login' className='cursor-pointer text-white'>
+              <FaUserCircle className='ml-1' color='white' size={30} />
+            </Link>
+          )}
+          <HiArrowLongLeft
+            size={35}
+            className='hidden text-white max-md:block'
+            onClick={() => setIsMenuOpen(false)}
+          />
+        </div>
+        <IoMenuSharp
+          size={32}
+          className='hidden text-white hover:text-primary-green max-md:block'
+          onClick={() => setIsMenuOpen(true)}
+        />
+      </nav>
     </header>
   );
 };
