@@ -1,11 +1,17 @@
-*{
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
   font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
 }
+
 body {
   background-color: #0d0d0d;
   font-family: 'Poppins', sans-serif;
 }
+
 main {
   min-height: 80vh;
   overflow: hidden;
@@ -26,13 +32,18 @@ main {
 }
 
 .product-title {
-  height: 2.5em; /* Set a fixed height */
-  overflow: hidden; /* Hide overflow content */
-  text-overflow: ellipsis; /* Add ellipsis for long text */
-  white-space: nowrap; /* Prevent wrapping */
+  height: 2.5em;
+  /* Set a fixed height */
+  overflow: hidden;
+  /* Hide overflow content */
+  text-overflow: ellipsis;
+  /* Add ellipsis for long text */
+  white-space: nowrap;
+  /* Prevent wrapping */
 }
+
 .product-image {
-  height: 203 !important ;
+  height: 203 !important;
   width: 255 !important;
 }
 
@@ -65,9 +76,11 @@ table th {
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
 }
+
 .logo {
   font-weight: bolder !important;
 }
+
 .logo span {
   font-style: italic;
   margin-right: 3px;
@@ -79,6 +92,7 @@ table th {
 button.btn-block.btn.btn-primary {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
+
 /*button.btn-block.btn.btn-primary:hover {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }*/
@@ -98,23 +112,27 @@ button.btn-block.btn.btn-primary {
   --bs-btn-disabled-bg: #3c4c5d;
   --bs-btn-disabled-border-color: #3c4c5d;
 }
+
 .form-check-input:checked {
   background-color: #75d4b4;
   border-color: #75d4b4;
 }
+
 .collection-card {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.collection-container{
+
+.collection-container {
   background-color: #f1f2f5 !important;
   overflow: scroll;
   overflow-x: hidden;
   text-align: center;
   color: black;
-  height:100vh;
+  height: 100vh;
 }
+
 .container-forgot {
   background-color: #f1f2f5;
   height: fit-content;
@@ -124,7 +142,7 @@ button.btn-block.btn.btn-primary {
   color: black;
 }
 
-.container-reset{
+.container-reset {
   text-align: left;
 }
 
@@ -141,18 +159,21 @@ button.btn-block.btn.btn-primary {
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   transition: all 0.25s ease-out;
 }
+
 .container-forgot .otp-input:focus {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border: solid 2px #75d4b4;
 }
 
 .container-forgot .list-group-item {
-  border: none; 
+  border: none;
 }
-.container-forgot .container-reset{
-  background-color: #f1f2f5 ;
-  
+
+.container-forgot .container-reset {
+  background-color: #f1f2f5;
+
 }
+
 .container-forgot .verify-btn {
   width: 100%;
   font-size: medium;
@@ -162,26 +183,29 @@ button.btn-block.btn.btn-primary {
   padding: 0.8rem 0.2rem;
 }
 
-.document-container{
+.document-container {
   background-color: white;
   padding: 2rem 5rem;
   padding-top: 85px;
-  min-height:100vh;
+  min-height: 100vh;
 }
+
 @media (max-width: 767px) {
-  .document-container{
+  .document-container {
     padding-left: 0.2rem !important;
     padding-right: 0.2rem !important;
-  
+
 
   }
+
   .review {
     padding: 0.2rem,
   }
+
   .container-forgot .otp-input {
     width: 45px;
     height: 45px;
     margin: 0.5rem 0.5rem;
-    
+
   }
-} 
+}
