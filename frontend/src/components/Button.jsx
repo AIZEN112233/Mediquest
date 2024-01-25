@@ -2,20 +2,13 @@ import React from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 const StyledButton = ({ text, type }) => {
-  const btnStyle = {
-    padding: "1rem 3rem",
-    color: "black",
-    backgroundColor: "#75dab4",
-    borderRadius: "5px",
-    fontWeight: "bolder",
-    fontSize: "1rem",
-    border: "transparent",
-  };
-
   return (
     <div>
-      <button type={type} style={btnStyle}>
-        {text} {' '} <FaArrowRightLong color="black" />
+      <button
+        className='flex items-center gap-2 rounded-md bg-primary-green px-10 py-3 text-base font-semibold text-black'
+        type={type}
+      >
+        {text} <FaArrowRightLong color='black' size={23} />
       </button>
     </div>
   );
