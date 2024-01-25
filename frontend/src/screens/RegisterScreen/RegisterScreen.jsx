@@ -37,7 +37,7 @@ const RegisterScreen = () => {
 
   const { search } = useLocation();
   const sp = new URLSearchParams(search);
-  const redirect = sp.get('redirect') || '/';
+  const redirect = sp.get("redirect") || "/";
 
   useEffect(() => {
     if (userInfoMediquest) {
@@ -112,11 +112,9 @@ const RegisterScreen = () => {
     }
   };
   const verfiyCode = async (e) => {
-    e.preventDefault()
-    
-    if (parseInt(OTPinput) === otpCode) {
+    e.preventDefault();
 
-      
+    if (parseInt(OTPinput) === otpCode) {
       try {
         const res = await register({ name, email, password }).unwrap();
         dispatch(setCredentials({ ...res }));
@@ -129,51 +127,51 @@ const RegisterScreen = () => {
     }
   };
   return (
-    <div className="register-container">
-      <div className="register-form-container">
+    <div className='register-container'>
+      <div className='register-form-container'>
         <Col md={8}>
           {!showOTPinput ? (
-            <FormContainer className="register-content mt-4">
-              <h1 className="white mt-4">Welcome</h1>
-              <p className="white">
+            <FormContainer className='register-content mt-4'>
+              <h1 className='white mt-4'>Welcome</h1>
+              <p className='white'>
                 Sign Up to continue to Medi
                 <span style={{ color: "#75dab4" }}>Q</span>uest
               </p>
               <Form onSubmit={sendConfirmationCode}>
-                <Form.Group className="my-2 white mt-3 mb-2" controlId="name">
+                <Form.Group className='white my-2 mb-2 mt-3' controlId='name'>
                   <Form.Control
-                    className="inputs"
-                    type="name"
-                    placeholder="Enter your name"
+                    className='inputs'
+                    type='name'
+                    placeholder='Enter your name'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   ></Form.Control>
                 </Form.Group>
 
-                <Form.Group className="my-2 white mb-2" controlId="email">
+                <Form.Group className='white my-2 mb-2' controlId='email'>
                   <Form.Control
-                    className="inputs"
-                    type="email"
-                    placeholder="Enter email"
+                    className='inputs'
+                    type='email'
+                    placeholder='Enter email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   ></Form.Control>
                 </Form.Group>
 
-                <Form.Group className="my-2 mb-2" controlId="password">
+                <Form.Group className='my-2 mb-2' controlId='password'>
                   <Form.Control
-                    className="inputs"
-                    type="password"
-                    placeholder="Enter password"
+                    className='inputs'
+                    type='password'
+                    placeholder='Enter password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   ></Form.Control>
                 </Form.Group>
-                <Form.Group className="my-2 mb-3" controlId="confirmPassword">
+                <Form.Group className='my-2 mb-3' controlId='confirmPassword'>
                   <Form.Control
-                    className="inputs"
-                    type="password"
-                    placeholder="Confirm password"
+                    className='inputs'
+                    type='password'
+                    placeholder='Confirm password'
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   ></Form.Control>
@@ -181,8 +179,8 @@ const RegisterScreen = () => {
 
                 {LoadingOTP && (
                   <Spinner
-                    animation="border"
-                    role="status"
+                    animation='border'
+                    role='status'
                     style={{
                       width: "50px",
                       height: "50px",
@@ -193,17 +191,17 @@ const RegisterScreen = () => {
                   ></Spinner>
                 )}
                 <StyledButton
-                  text="REGISTER"
-                  type="submit"
+                  text='REGISTER'
+                  type='submit'
                   style={{ margin: "auto" }}
                 />
               </Form>
 
-              <Row className="py-3">
-                <Col className="white">
+              <Row className='py-3'>
+                <Col className='white'>
                   Already have an account?{" "}
                   <Link
-                    style={{color:"#00537A"}} to={redirect ? `/login?redirect=${redirect}` : '/login'}
+                    to={redirect ? `/login?redirect=${redirect}` : "/login"}
                     style={{ color: "#75dab4" }}
                   >
                     {" "}
@@ -215,13 +213,13 @@ const RegisterScreen = () => {
             </FormContainer>
           ) : (
             <>
-              <Col md={8} className="mx-auto mt-5">
+              <Col md={8} className='mx-auto mt-5'>
                 <div
-                  className=" align-items-center  
-                        justify-content-center mx-auto"
+                  className=' align-items-center  
+                        justify-content-center mx-auto'
                 >
-                  <h3 className="white mt-5">Enter Confirmation Code</h3>
-                  <p className="white">
+                  <h3 className='white mt-5'>Enter Confirmation Code</h3>
+                  <p className='white'>
                     Enter the confirmation code we sent to {email}.{" "}
                     <a
                       style={{
@@ -239,8 +237,8 @@ const RegisterScreen = () => {
                   </p>
                   {LoadingOTP && (
                     <Spinner
-                      animation="border"
-                      role="status"
+                      animation='border'
+                      role='status'
                       style={{
                         width: "50px",
                         height: "50px",
@@ -252,27 +250,26 @@ const RegisterScreen = () => {
                   )}
                   <Form onSubmit={verfiyCode}>
                     <Form.Group
-                      className="my-2 white mt-3 mb-2"
-                      controlId="otp-input"
+                      className='white my-2 mb-2 mt-3'
+                      controlId='otp-input'
                     >
                       <Form.Control
-                        className="inputs"
-                        type="name"
-                        placeholder="Confirmation Code"
+                        className='inputs'
+                        type='name'
+                        placeholder='Confirmation Code'
                         value={OTPinput}
                         onChange={(e) => setOTPinput(e.target.value)}
                       ></Form.Control>
                     </Form.Group>
                     <Button
                       style={{ width: "100%", fontWeight: "700" }}
-                      className="verify-btn btn-block shadow-none mt-2 mb-3"
-                      type="submit"
-                    
+                      className='verify-btn btn-block mb-3 mt-2 shadow-none'
+                      type='submit'
                     >
                       {isLoading ? (
                         <Spinner
-                          animation="border"
-                          role="status"
+                          animation='border'
+                          role='status'
                           style={{
                             width: "20px",
                             height: "20px",
@@ -285,7 +282,7 @@ const RegisterScreen = () => {
                       )}
                     </Button>
                     <a
-                      className="mt-4"
+                      className='mt-4'
                       style={{
                         color: "#38b58b",
                         cursor: "pointer",
