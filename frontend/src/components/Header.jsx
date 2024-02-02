@@ -6,6 +6,7 @@ import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
 import { IoMenuSharp } from "react-icons/io5";
 import { HiArrowLongLeft } from "react-icons/hi2";
+import SearchBox from "./SearchBox";
 
 const Header = () => {
   const { userInfoMediquest } = useSelector((state) => state.auth);
@@ -60,6 +61,7 @@ const Header = () => {
             Summaries
           </Link>
           {/* Admin Links */}
+          <SearchBox />
           {userInfoMediquest && userInfoMediquest.isAdmin && (
             <div className='group relative'>
               <button className='cursor-pointer text-white'>Dashboard</button>
