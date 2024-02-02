@@ -12,7 +12,7 @@ const SearchBox = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (keyword) {
+    if (keyword.trim()) {
       navigate(`/search/${keyword.trim()}`);
       setKeyword("");
     } else {
