@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
 import { IoMenuSharp } from "react-icons/io5";
@@ -13,10 +13,9 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigate = useNavigate();
+  const router = useLocation();
   const dispatch = useDispatch();
-
   const [logoutApi] = useLogoutMutation();
-
   const logoutHandler = async () => {
     try {
       await logoutApi();
@@ -26,9 +25,10 @@ const Header = () => {
       console.log(error);
     }
   };
-
   return (
-    <header className='fixed top-0 z-50 w-full bg-gray-900'>
+    <header
+      className={`fixed top-0 z-50 w-full ${router.pathname === "/" ? "" : "border-b bg-gray-950"}`}
+    >
       <nav className='container mx-auto flex items-center justify-between py-4'>
         <div className='flex items-center'>
           <Link
