@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { IoIosSearch } from "react-icons/io";
 
 const SearchBox = () => {
   const navigate = useNavigate();
@@ -21,22 +21,23 @@ const SearchBox = () => {
   };
 
   return (
-    <form onSubmit={submitHandler} className='flex'>
+    <form
+      onSubmit={submitHandler}
+      className='flex items-center rounded-md border-2 bg-transparent px-2 py-1 text-white outline-none duration-500 focus-within:border-primary-green'
+    >
       <input
         type='text'
         name='q'
         onChange={(e) => setKeyword(e.target.value)}
         value={keyword}
         placeholder='Search...'
-        className='rounded-md border-2 bg-transparent px-3 text-white outline-none duration-500 focus-within:border-primary-green'
+        className='bg-transparent focus-within:outline-none'
       />
-      <Button
+      <IoIosSearch
         type='submit'
         variant='outline-light'
-        className='mx-2 rounded-lg p-2'
-      >
-        Search
-      </Button>
+        className='text-[25px] text-white'
+      />
     </form>
   );
 };
