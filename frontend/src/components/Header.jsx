@@ -40,23 +40,23 @@ const Header = () => {
         </div>
 
         <div
-          className={`flex items-center space-x-4 max-md:fixed max-md:inset-0 max-md:h-screen max-md:w-screen max-md:flex-col max-md:justify-center max-md:gap-10 max-md:backdrop-blur ${isMenuOpen ? "max-md:translate-x-0" : "max-md:translate-x-full"}`}
+          className={`flex items-center space-x-4 text-white max-md:fixed max-md:inset-0 max-md:h-screen max-md:w-screen max-md:flex-col max-md:justify-center max-md:gap-10 max-md:backdrop-blur ${isMenuOpen ? "max-md:translate-x-0" : "max-md:translate-x-full"}`}
         >
           <Link
             to='/exams'
-            className='cursor-pointer text-white max-md:text-2xl max-md:font-[600] md:relative md:left-0 lg:-left-1/3'
+            className={`cursor-pointer underline-offset-2 hover:text-primary-green hover:underline max-md:text-2xl max-md:font-[600] md:relative md:left-0 lg:-left-1/3 ${router.pathname === "/exams" ? "text-primary-green underline" : ""}`}
           >
             Exams
           </Link>
           <Link
             to='/courses'
-            className='cursor-pointer text-white max-md:text-2xl max-md:font-[600] md:relative md:left-0 lg:-left-1/3'
+            className={`cursor-pointer underline-offset-2 hover:text-primary-green hover:underline max-md:text-2xl max-md:font-[600] md:relative md:left-0 lg:-left-1/3 ${router.pathname === "/courses" ? "text-primary-green underline" : ""}`}
           >
             Courses
           </Link>
           <Link
             to='/summaries'
-            className='cursor-pointer text-white max-md:text-2xl max-md:font-[600] md:relative md:left-0 lg:-left-1/3'
+            className={`cursor-pointer underline-offset-2 hover:text-primary-green hover:underline max-md:text-2xl max-md:font-[600] md:relative md:left-0 lg:-left-1/3 ${router.pathname === "/summaries" ? "text-primary-green underline" : ""}`}
           >
             Summaries
           </Link>
