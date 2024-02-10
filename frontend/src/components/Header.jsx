@@ -27,9 +27,9 @@ const Header = () => {
   };
   return (
     <header
-      className={`fixed top-0 z-50 w-full ${router.pathname === "/" ? "" : "border-b bg-gray-950"}`}
+      className={`fixed top-0 z-50 w-full ${router.pathname === "/" ? "" : "border-b bg-gray-950/40 backdrop-blur-md"}`}
     >
-      <nav className='container mx-auto flex items-center justify-between py-4'>
+      <nav className='container mx-auto flex items-center justify-between py-4 lg:px-36'>
         <div className='flex items-center'>
           <Link
             to='/'
@@ -44,19 +44,19 @@ const Header = () => {
         >
           <Link
             to='/exams'
-            className='cursor-pointer text-white max-md:text-2xl max-md:font-[600]'
+            className='cursor-pointer text-white max-md:text-2xl max-md:font-[600] md:relative md:left-0 lg:-left-1/3'
           >
             Exams
           </Link>
           <Link
             to='/courses'
-            className='cursor-pointer text-white max-md:text-2xl max-md:font-[600]'
+            className='cursor-pointer text-white max-md:text-2xl max-md:font-[600] md:relative md:left-0 lg:-left-1/3'
           >
             Courses
           </Link>
           <Link
             to='/summaries'
-            className='cursor-pointer text-white max-md:text-2xl max-md:font-[600]'
+            className='cursor-pointer text-white max-md:text-2xl max-md:font-[600] md:relative md:left-0 lg:-left-1/3'
           >
             Summaries
           </Link>
