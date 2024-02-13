@@ -11,8 +11,10 @@
 
 .login-bg {
   background-image: url("../../assets/login_bg.png");
+  background-blend-mode: hue;
   background-position: center;
-  background-size: cover;
+  background-color: rgba(0, 0, 0, .5);
+  background-blend-mode: color;
 
 }
 
