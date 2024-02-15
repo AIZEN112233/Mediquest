@@ -79,7 +79,7 @@ const LoginScreen = () => {
             </span>
           </p>
         </div>
-        <form className='flex flex-col gap-6'>
+        <form className='flex flex-col gap-6' onSubmit={submitHandler}>
           <input
             type='text'
             value={email}
@@ -114,10 +114,10 @@ const LoginScreen = () => {
           >
             Forgot Password?
           </p>
+          <div className='mx-auto'>
+            <StyledButton text='START LEARNING' type='submit' />
+          </div>
         </form>
-        <div className='mx-auto'>
-          <StyledButton text='START LEARNING' type='submit' />
-        </div>
         {loadingOTP && <Loader style={{ color: "white !important" }} />}
         {isLoading && (
           <Spinner
