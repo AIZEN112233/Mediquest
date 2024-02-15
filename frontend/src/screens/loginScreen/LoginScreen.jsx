@@ -67,8 +67,8 @@ const LoginScreen = () => {
   };
 
   return (
-    <div className='login-bg grid h-screen place-items-center'>
-      <div className='flex flex-col gap-6 rounded-md  bg-[#1616169b] px-[54px] py-[28px] text-center'>
+    <div className='login-bg grid h-screen place-items-center pt-[100px]'>
+      <div className='flex flex-col gap-6 rounded-md  bg-[#1616169b] px-[54px] py-[40px] text-center'>
         <div className='flex flex-col gap-3'>
           <h1 className='font-playFair text-[64px] font-[500]'>Welcome</h1>
           <p className='text-[24px] font-[300]'>
