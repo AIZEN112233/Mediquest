@@ -132,8 +132,10 @@ const RegisterScreen = () => {
         <Col md={8}>
           {!showOTPinput ? (
             <FormContainer className='register-content mt-4'>
-              <h1 className='white mt-4'>Welcome</h1>
-              <p className='white'>
+              <h1 className='white mb-3 mt-4 font-playFair text-5xl'>
+                Welcome
+              </h1>
+              <p className='white '>
                 Sign Up to continue to Medi
                 <span style={{ color: "#75dab4" }}>Q</span>uest
               </p>
@@ -193,7 +195,7 @@ const RegisterScreen = () => {
                 <StyledButton
                   text='REGISTER'
                   type='submit'
-                  style={{ margin: "auto" }}
+                  style={{ margin: "auto", display: "block" }}
                 />
               </Form>
 

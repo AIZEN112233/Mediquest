@@ -21,11 +21,16 @@
 }
 
 .register-container .inputs {
-  background-color: black;
-  border: 1px solid white;
+  background-color: #161616c2;
+  border: 2px solid white;
   color: white;
   border-radius: 3px;
   margin-bottom: 10px;
+}
+
+.register-container .inputs:focus {
+  background-color: #161616c2;
+  border: 2px solid #75DAB4;
 }
 
 .register-container .inputs::placeholder {
