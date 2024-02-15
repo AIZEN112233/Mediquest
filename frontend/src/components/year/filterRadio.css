@@ -1,113 +1,22 @@
 .sidebar-title {
-    font-size: 22px;
-    font-weight: normal;
-    margin-bottom: 20px;
-  }
-  
-  .sidebar-items {
-    margin-top: 20px;
-  }
-  
-  .sidebar-label-container {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  
-  .sidebar-label-container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-  }
-  
-  .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: #eee;
-    border-radius: 50%;
-  }
-  
-  .all {
-    background: linear-gradient(blue, crimson);
-  }
-  
-  .sidebar-label-container:hover input ~ .checkmark {
-    background-color: #ccc;
-  }
-  
-  .sidebar-label-container input:checked ~ .checkmark {
-    background-color: #38b58b;
-  }
-  
-  .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-  
-  .sidebar-label-container input:checked ~ .checkmark:after {
-    display: block;
-  }
-  
-  .sidebar-label-container .checkmark:after {
-    top: 6.4px;
-    left: 6.4px;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: white;
-  }
-  
-  .line {
-    margin-top: 3rem;
-    border-color: #f7f7f7;
-  }
-
-  .sidebar-label-container input:checked ~ .checkmark {
-    background-color: #38b58b;
+  font-size: 22px;
+  font-weight: normal;
+  margin-bottom: 20px;
 }
 
-.sidebar-label-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
+.sidebar-items {
+  margin-top: 20px;
+}
+
+
+
+.sidebar-label-container input {
   cursor: pointer;
 }
 
-.sidebar-label-container input {
-  display: none;
-}
-.checkmark {
-  width: 20px;
-  height: 20px;
-  background-color: #eee;
-  border-radius: 50%;
-  margin-right: 8px;
-}
 
-.sidebar-label-container:hover .checkmark {
-  background-color: #ccc;
-}
-
-.sidebar-label-container input:checked + .checkmark {
-  background-color: #38b58b;
-}
-.checkmark:after {
-  content: "";
-  display: block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: white;
+.all {
+  background: linear-gradient(blue, crimson);
 }
 
 .line {
@@ -115,24 +24,30 @@
   border-color: #f7f7f7;
 }
 
+
+
+.line {
+  margin-top: 3rem;
+  border-color: #f7f7f7;
+}
+
 @media (max-width: 767px) {
-  .filter-container{
-     display: flex;
-     justify-content: space-around;
-     margin-left: 2rem;
+  .filter-container {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 2rem;
     margin-right: 2rem;
   }
-  .filter-container Input{
+
+  .filter-container Input {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
- }
- .sidebar-label-container {
- 
-  margin: 0 0.2rem;
-}
- .sidebar-label-container {
-  
-  padding-left: 30px;
+  }
+
+  .sidebar-label-container {
+
+    padding-left: 30px;
+    margin: 0 0.2rem;
+  }
 
 }
-} 
