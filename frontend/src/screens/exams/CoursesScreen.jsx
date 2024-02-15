@@ -28,8 +28,8 @@ const CoursesScreen = () => {
 
   const handleChange = async (event) => {
     event.preventDefault();
-   
-    if (!(event.target.value)) {
+
+    if (!event.target.value) {
       setCourses(data);
     } else {
       try {
@@ -39,9 +39,8 @@ const CoursesScreen = () => {
           category: "course",
           year: event.target.value,
         }).unwrap();
-        
+
         setCourses(newDocuments);
-       
       } catch (error) {
         toast.error(error?.data?.message || error.error);
       }
@@ -55,47 +54,43 @@ const CoursesScreen = () => {
   }, [data]);
   return (
     <>
-      <Row className="exams-row">
-        <Col className="filter-side" md={2} >
+      <Row className='exams-row'>
+        <Col className='filter-side' md={2}>
           <Year handleChange={handleChange} />
         </Col>
 
         <Col
-          className="content-side"
-          style={{ backgroundColor: "#161616", minHeight:"100vh" }}
+          className='content-side'
+          style={{ backgroundColor: "#161616", minHeight: "100vh" }}
           md={10}
         >
-          <Row className="p-3 mt-3">
-            <Col>
-              <strong>Courses</strong>
-            </Col>
-            <Col>
-              <strong></strong>
-            </Col>
-          </Row>
+          <div className='bg-red mt-3 flex justify-between p-3'>
+            <strong>Courses</strong>
+            <strong>{courses?.categorizedDocs.length}</strong>
+          </div>
           {loadingFiltered && <Loader />}
           {error && (
-            <Message variant="danger">
+            <Message variant='danger'>
               {error?.data?.message || error?.error}
             </Message>
           )}
           {isLoading ? (
             <Loader />
           ) : isError ? (
-            <Message variant="danger">
+            <Message variant='danger'>
               {isError?.data?.message || isError?.error}
             </Message>
           ) : (
-            <Row className="m-2">
+            <Row className='m-2'>
               {courses?.categorizedDocs.map((document) => (
                 <Col key={document._id} sm={12} md={5} lg={4} xl={3}>
-                  <div className="card-container">
-                  <ExamCard document={document} className="m-3" />
+                  <div className='card-container'>
+                    <ExamCard document={document} className='m-3' />
                   </div>
                 </Col>
               ))}
               {courses?.categorizedDocs.length === 0 && (
-                <Row className="justify-content-center">
+                <Row className='justify-content-center'>
                   <Col md={10}>
                     <Message>no matches were found!</Message>
                   </Col>
@@ -104,7 +99,7 @@ const CoursesScreen = () => {
             </Row>
           )}
           {courses?.pages > 1 && (
-            <Pagination className="mx-auto my-2">
+            <Pagination className='mx-auto my-2'>
               {[...Array(courses?.pages).keys()].map((x) => (
                 <LinkContainer key={x + 1} to={`/courses/page/${x + 1}`}>
                   <Pagination.Item active={x + 1 === courses?.page}>

@@ -63,9 +63,10 @@ const ExamsScreen = () => {
           md={10}
         >
           <Row className='mt-3 p-3'>
-            <Col>
+            <div className='d-flex justify-content-between'>
               <strong>Exams</strong>
-            </Col>
+              <strong>{exams?.categorizedDocs.length}</strong>
+            </div>
             <Col md={2}></Col>
           </Row>{" "}
           {loadingFiltered && <Loader />}
