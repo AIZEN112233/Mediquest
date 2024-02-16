@@ -16,6 +16,7 @@ import Year from "../../components/year/filterRadio";
 
 const SummariesScreen = () => {
   const [summaries, setSummaries] = useState();
+  const [isOpen, setIsOpen] = useState(true);
 
   const { pageNumber, keyword } = useParams();
   const { data, isLoading, isError } = useGetDocumentsQuery({
@@ -56,9 +57,17 @@ const SummariesScreen = () => {
   return (
     <>
       <Row className='exams-row'>
-        <Col className='filter-side' md={2}>
-          <Year handleChange={handleChange} />
-        </Col>
+        <button
+          className='fixed bottom-0 right-0 m-3 hidden w-fit rounded bg-primary-green px-3 py-2 font-bold text-black max-md:inline'
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
+          Filter
+        </button>
+        {isOpen && (
+          <Col className='filter-side' md={2}>
+            <Year handleChange={handleChange} />
+          </Col>
+        )}
 
         <Col
           className='content-side'
@@ -67,7 +76,7 @@ const SummariesScreen = () => {
         >
           <Row className='mt-3 p-3'>
             <div className='flex justify-between'>
-              <strong>Summaries</strong>
+              <strong className='text-xl'>Summaries</strong>
               <strong>{summaries?.categorizedDocs.length}</strong>
             </div>
             {/*<Col>

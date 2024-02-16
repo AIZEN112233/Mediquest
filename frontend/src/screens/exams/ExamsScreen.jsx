@@ -16,6 +16,7 @@ import Year from "../../components/year/filterRadio";
 
 const ExamsScreen = () => {
   const [exams, setExams] = useState();
+  const [isOpen, setIsOpen] = useState(true);
   const { pageNumber, keyword } = useParams();
   const { data, isLoading, isError } = useGetDocumentsQuery({
     keyword,
@@ -53,9 +54,17 @@ const ExamsScreen = () => {
   return (
     <>
       <Row className='exams-row'>
-        <Col className='filter-side' md={2}>
-          <Year handleChange={handleChange} />
-        </Col>
+        <button
+          className='fixed bottom-0 right-0 m-3 hidden w-fit rounded bg-primary-green px-3 py-2 font-bold text-black max-md:inline'
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
+          Filter
+        </button>
+        {isOpen && (
+          <Col className='filter-side' md={2}>
+            <Year handleChange={handleChange} />
+          </Col>
+        )}
 
         <Col
           className='content-side'
@@ -64,7 +73,7 @@ const ExamsScreen = () => {
         >
           <Row className='mt-3 p-3'>
             <div className='d-flex justify-content-between'>
-              <strong>Exams</strong>
+              <strong className='text-xl'>Exams</strong>
               <strong>{exams?.categorizedDocs.length}</strong>
             </div>
             <Col md={2}></Col>

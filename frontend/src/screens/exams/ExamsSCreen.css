@@ -37,13 +37,18 @@
 
 .filter-side {
     display: flex;
+    position: sticky;
     justify-content: center;
     height: 100vh;
 }
 
 @media (max-width: 767px) {
     .filter-side {
-        height: 20vh;
+        position: absolute;
+        width: 85vw;
+        z-index: 100;
+        backdrop-filter: blur(20px);
+        background-color: #000000e3;
     }
 
     .card-container {

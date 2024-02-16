@@ -16,28 +16,29 @@ function Year({ handleChange }) {
         Year
       </h2>
 
-      {isHidden && (
-        <div className=' filter-container' style={{ margin: "auto" }}>
-          <label className='sidebar-label-container'>
-            <input
-              onChange={handleChange}
-              className='mr-10 h-5 w-5 appearance-none rounded-sm border-2 border-primary-green checked:bg-primary-green'
-              type='radio'
-              value=''
-              name='test'
-            />
-            <span className='text-xl'>All</span>
-          </label>
-          <Input handleChange={handleChange} value='1' title='1' name='test' />
-          <Input handleChange={handleChange} value='2' title='2' name='test' />
-          <Input handleChange={handleChange} value='3' title='3' name='test' />
-          <Input handleChange={handleChange} value='4' title='4' name='test' />
+      <div
+        className={`filter-container duration-500 ${isHidden && "opacity-0"}`}
+        style={{ margin: "auto" }}
+      >
+        <label className='sidebar-label-container'>
+          <input
+            onChange={handleChange}
+            className='mr-10 h-5 w-5 appearance-none rounded-sm border-2 border-primary-green checked:bg-primary-green'
+            type='radio'
+            value=''
+            name='test'
+          />
+          <span className='text-xl'>All</span>
+        </label>
+        <Input handleChange={handleChange} value='1' title='1' name='test' />
+        <Input handleChange={handleChange} value='2' title='2' name='test' />
+        <Input handleChange={handleChange} value='3' title='3' name='test' />
+        <Input handleChange={handleChange} value='4' title='4' name='test' />
 
-          <Input handleChange={handleChange} value='5' title='5' name='test' />
-          <Input handleChange={handleChange} value='6' title='6' name='test' />
-          <Input handleChange={handleChange} value='7' title='7' name='test' />
-        </div>
-      )}
+        <Input handleChange={handleChange} value='5' title='5' name='test' />
+        <Input handleChange={handleChange} value='6' title='6' name='test' />
+        <Input handleChange={handleChange} value='7' title='7' name='test' />
+      </div>
     </div>
   );
 }

@@ -32,22 +32,10 @@
 }
 
 @media (max-width: 767px) {
-  .filter-container {
-    display: flex;
-    justify-content: space-around;
-    margin-left: 2rem;
-    margin-right: 2rem;
-  }
 
   .filter-container Input {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
-  }
-
-  .sidebar-label-container {
-
-    padding-left: 30px;
-    margin: 0 0.2rem;
   }
 
 }
