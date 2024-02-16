@@ -1,10 +1,13 @@
 .register-container {
   padding: 0 !important;
   margin: 0 !important;
-  background-image: url("../../assets/register_bg.png");
+  background-image: url("../../assets/login_bg.png");
   height: 100vh;
   background-position: center;
   background-size: cover;
+  background-blend-mode: hue;
+  background-color: rgba(0, 0, 0, .5);
+  background-blend-mode: color;
 }
 
 .register-form-container {

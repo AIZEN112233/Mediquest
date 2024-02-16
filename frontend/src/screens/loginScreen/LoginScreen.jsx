@@ -84,7 +84,7 @@ const LoginScreen = () => {
             type='text'
             value={email}
             placeholder='Email'
-            className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 focus-within:border-primary-green focus-within:outline-none'
+            className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 focus-within:border-primary-green focus-within:outline-none max-md:px-2'
             onChange={(e) => setEmail(e.target.value)}
           />
           <div className='relative'>

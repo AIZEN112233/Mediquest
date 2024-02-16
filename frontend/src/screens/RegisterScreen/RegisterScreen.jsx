@@ -13,12 +13,14 @@ import {
 } from "../../slices/usersApiSlice";
 import { setCredentials } from "../../slices/authSlice";
 import "./RegisterScreen.css";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 
 const RegisterScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isEyeToggled, setIsEyeToggeled] = useState(false);
 
   const [showOTPinput, setShowOTPinput] = useState(false);
   const [timerCount, setTimer] = useState(60);
@@ -128,10 +130,10 @@ const RegisterScreen = () => {
   };
   return (
     <div className='register-container'>
-      <div className='register-form-container'>
+      <div className='register-form-container flex h-screen items-center justify-center'>
         <Col md={8}>
           {!showOTPinput ? (
-            <FormContainer className='register-content mt-4'>
+            <div className=' mx-auto mt-4 flex w-full max-w-[550px] flex-col gap-3 rounded-xl bg-[#1616169f] p-[50px] max-md:bg-transparent max-md:px-2'>
               <h1 className='white mb-3 mt-4 font-playFair text-5xl'>
                 Welcome
               </h1>
@@ -139,45 +141,55 @@ const RegisterScreen = () => {
                 Sign Up to continue to Medi
                 <span style={{ color: "#75dab4" }}>Q</span>uest
               </p>
-              <Form onSubmit={sendConfirmationCode}>
-                <Form.Group className='white my-2 mb-2 mt-3' controlId='name'>
-                  <Form.Control
-                    className='inputs'
-                    type='name'
-                    placeholder='Enter your name'
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
+              <form
+                className='flex flex-col gap-2'
+                onSubmit={sendConfirmationCode}
+              >
+                <input
+                  type='text'
+                  value={name}
+                  placeholder='User Name'
+                  className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 focus-within:border-primary-green focus-within:outline-none'
+                  onChange={(e) => setName(e.target.value)}
+                />
 
-                <Form.Group className='white my-2 mb-2' controlId='email'>
-                  <Form.Control
-                    className='inputs'
-                    type='email'
-                    placeholder='Enter email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
+                <input
+                  type='text'
+                  value={email}
+                  placeholder='Email'
+                  className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 focus-within:border-primary-green focus-within:outline-none'
+                  onChange={(e) => setEmail(e.target.value)}
+                />
 
-                <Form.Group className='my-2 mb-2' controlId='password'>
-                  <Form.Control
-                    className='inputs'
-                    type='password'
-                    placeholder='Enter password'
+                <div className='relative'>
+                  <input
+                    type={isEyeToggled ? "text" : "password"}
                     value={password}
+                    placeholder='Password'
+                    className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 focus-within:border-primary-green focus-within:outline-none'
                     onChange={(e) => setPassword(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
-                <Form.Group className='my-2 mb-3' controlId='confirmPassword'>
-                  <Form.Control
-                    className='inputs'
-                    type='password'
-                    placeholder='Confirm password'
+                  />
+                  {isEyeToggled ? (
+                    <IoEyeOffOutline
+                      onClick={() => setIsEyeToggeled(false)}
+                      className='absolute right-5 top-1/2 -translate-y-1/2 text-[24px] hover:text-primary-green'
+                    />
+                  ) : (
+                    <IoEyeOutline
+                      onClick={() => setIsEyeToggeled(true)}
+                      className='absolute right-5 top-1/2 -translate-y-1/2 text-[24px] hover:text-primary-green'
+                    />
+                  )}
+                </div>
+                <div className='relative'>
+                  <input
+                    type={isEyeToggled ? "text" : "password"}
                     value={confirmPassword}
+                    placeholder='Confirm Password'
+                    className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 focus-within:border-primary-green focus-within:outline-none'
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
+                  />
+                </div>
 
                 {LoadingOTP && (
                   <Spinner
@@ -192,12 +204,19 @@ const RegisterScreen = () => {
                     }}
                   ></Spinner>
                 )}
-                <StyledButton
-                  text='REGISTER'
-                  type='submit'
-                  style={{ margin: "auto", display: "block" }}
-                />
-              </Form>
+                <div>
+                  <StyledButton
+                    text='REGISTER'
+                    type='submit'
+                    style={{
+                      margin: "auto",
+                      display: "block",
+                      display: "flex",
+                      marginTop: "1rem",
+                    }}
+                  />
+                </div>
+              </form>
 
               <Row className='py-3'>
                 <Col className='white'>
@@ -212,7 +231,7 @@ const RegisterScreen = () => {
                   </Link>
                 </Col>
               </Row>
-            </FormContainer>
+            </div>
           ) : (
             <>
               <Col md={8} className='mx-auto mt-5'>
