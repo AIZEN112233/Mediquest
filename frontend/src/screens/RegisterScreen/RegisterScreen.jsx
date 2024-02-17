@@ -235,12 +235,11 @@ const RegisterScreen = () => {
           ) : (
             <>
               <Col md={8} className='mx-auto mt-5'>
-                <div
-                  className=' align-items-center  
-                        justify-content-center mx-auto'
-                >
-                  <h3 className='white mt-5'>Enter Confirmation Code</h3>
-                  <p className='white'>
+                <div className='mx-auto max-w-[500px] rounded-lg bg-[#161616af] px-[50px] max-md:bg-transparent'>
+                  <h3 className='white py-3 font-playFair text-3xl font-bold tracking-wide'>
+                    Enter Confirmation Code
+                  </h3>
+                  <p className='text-base text-white'>
                     Enter the confirmation code we sent to {email}.{" "}
                     <a
                       style={{
@@ -275,7 +274,7 @@ const RegisterScreen = () => {
                       controlId='otp-input'
                     >
                       <Form.Control
-                        className='inputs'
+                        className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 focus-within:border-primary-green focus-within:bg-[#161616]'
                         type='name'
                         placeholder='Confirmation Code'
                         value={OTPinput}
@@ -286,6 +285,7 @@ const RegisterScreen = () => {
                       style={{ width: "100%", fontWeight: "700" }}
                       className='verify-btn btn-block mb-3 mt-2 shadow-none'
                       type='submit'
+                      disabled={isLoading}
                     >
                       {isLoading ? (
                         <Spinner
@@ -303,7 +303,7 @@ const RegisterScreen = () => {
                       )}
                     </Button>
                     <a
-                      className='mt-4'
+                      className='block pb-3'
                       style={{
                         color: "#38b58b",
                         cursor: "pointer",
