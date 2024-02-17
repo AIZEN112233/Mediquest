@@ -27,7 +27,7 @@ const Header = () => {
   };
   return (
     <header
-      className={`fixed top-0 z-50 w-full ${router.pathname === "/" ? "" : "border-b bg-gray-950/40 backdrop-blur-md"}`}
+      className={`fixed top-0 z-50 w-full ${router.pathname === "/" ? "" : "border-b bg-gray-950/60 backdrop-blur-md"}`}
     >
       <nav className='container mx-auto flex items-center justify-between py-4 lg:px-36'>
         <div className='flex items-center'>

@@ -16,7 +16,7 @@ import {
   Card,
 } from "react-bootstrap";
 import { Spinner } from "react-bootstrap";
-import SpinnerDownload from 'react-bootstrap/Spinner';
+import SpinnerDownload from "react-bootstrap/Spinner";
 import { IoMdEye } from "react-icons/io";
 import { FaDownload } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
@@ -44,7 +44,7 @@ const DocumentScreen = () => {
   const [comment, setComment] = useState("");
   const [showCols, setShowCol] = useState(false);
   const [loadingDownload, setLoading] = useState(false);
- 
+
   const [createCollection, { isLoading: loandingCollectionCreation, error }] =
     useCreateCollectionMutation();
 
@@ -53,16 +53,11 @@ const DocumentScreen = () => {
 
   const navigate = useNavigate();
 
-  const {
-    data,
-    isLoading,
-    refetch,
-    isError,
-  } = useGetDocumentDetailsQuery(documentId);
+  const { data, isLoading, refetch, isError } =
+    useGetDocumentDetailsQuery(documentId);
 
-  const [downloadDocument] = useDownloadDocumentMutation()
+  const [downloadDocument] = useDownloadDocumentMutation();
   //const {data:downloadedDocument} =   useGetDownloadDocumentQuery(documentId)
-
 
   const { userInfoMediquest } = useSelector((state) => state.auth);
 
@@ -72,74 +67,75 @@ const DocumentScreen = () => {
   const [deleteComment, { isLoading: loadingDelete }] =
     useDeleteCommentMutation();
 
-  
-    const downloadFile2 = async (e) =>{
-      e.preventDefault()
-      try {
-      const res =  await downloadDocument({documentId})
+  const downloadFile2 = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await downloadDocument({ documentId });
 
       //const blob = await res.blob();
-      const blob = res.data 
+      const blob = res.data;
 
       const link = document.createElement("a");
-      link.href = window.URL.createObjectURL(new Blob([res.data], { type: res.data.type }));
+      link.href = window.URL.createObjectURL(
+        new Blob([res.data], { type: res.data.type }),
+      );
       link.download = "file.pdf";
       // link.download = res.headers["content-disposition"].split("filename=")[1];
       link.click();
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
-      }
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
     }
+  };
 
-    const downloadFile = async (e) =>{
-      e.preventDefault()
-      if(userInfoMediquest){
-        setLoading(true)
-        axios({
-          url:`/api/documents/${documentId}/download`,
-          method: "GET",
-          responseType: "blob",
-        }).then((response) => {
-          setLoading(false)
+  const downloadFile = async (e) => {
+    e.preventDefault();
+    if (userInfoMediquest) {
+      setLoading(true);
+      axios({
+        url: `/api/documents/${documentId}/download`,
+        method: "GET",
+        responseType: "blob",
+      })
+        .then((response) => {
+          setLoading(false);
           // Extract filename from Content-Disposition header
-         const contentDisposition = response.headers['content-disposition'];
-         const filenameMatch = contentDisposition && contentDisposition.match(/filename="(.+?)"/);
-         const filename = filenameMatch ? filenameMatch[1] : 'downloadedFile';
+          const contentDisposition = response.headers["content-disposition"];
+          const filenameMatch =
+            contentDisposition && contentDisposition.match(/filename="(.+?)"/);
+          const filename = filenameMatch ? filenameMatch[1] : "downloadedFile";
           // Access the response data directly
           const blob = response.data;
           // Create blob link to download
-          const url = window.URL.createObjectURL(
-            new Blob([blob]),
-          );
-          const link = document.createElement('a');
+          const url = window.URL.createObjectURL(new Blob([blob]));
+          const link = document.createElement("a");
           link.href = url;
-          link.setAttribute(
-            'download',
-            filename,
-          );
-      
+          link.setAttribute("download", filename);
+
           // Append to html link element page
           document.body.appendChild(link);
-          setLoading(false)
+          setLoading(false);
           // Start download
           link.click();
-      
+
           // Clean up and remove the link
           link.parentNode.removeChild(link);
-        }).catch((error) => {
+        })
+        .catch((error) => {
           if (error.response && error.response.status === 404) {
-            setLoading(false)
-            toast.error('Sorry, no PDF file available for download now.');
+            setLoading(false);
+            toast.error("Sorry, no PDF file available for download now.");
           } else {
             // Handle other errors
-            setLoading(false)
-            toast.error(`An error occurred: ${error.response.data.message || 'Unknown error'}`);
+            setLoading(false);
+            toast.error(
+              `An error occurred: ${error.response.data.message || "Unknown error"}`,
+            );
           }
         });
-      } else {
-        toast.error("Please sign in to your account to enable downloads.");
-      }
-    };
+    } else {
+      toast.error("Please sign in to your account to enable downloads.");
+    }
+  };
   const {
     data: collections,
     isLoading: loadingCollections,
@@ -217,44 +213,40 @@ const DocumentScreen = () => {
     border: "transparent",
   };
 
- 
   // image resizing
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
   return (
     <>
-      <div className="document-container"
-       
-      >
-        <Link className="btn btn-light my-3" to="/exams">
+      <div className='document-container'>
+        <Link className='btn btn-light my-3' to='/exams'>
           Go Back
         </Link>
 
         {isLoading ? (
           <Loader />
         ) : isError ? (
-          <Message variant="danger">
+          <Message variant='danger'>
             "Something went wrong, please try again later!"
           </Message>
         ) : (
           <>
             <Meta title={data.name} />
-            <Row 
+            <Row
               style={{
-               marginBottom:"2rem",
+                marginBottom: "2rem",
                 color: "black",
                 backgroundColor: "white",
               }}
             >
               <Modal
-                size="lg"
+                size='lg'
                 show={show}
                 onHide={handleClose}
-                backdrop="static"
+                backdrop='static'
                 keyboard={false}
               >
                 <Modal.Header closeButton>
@@ -269,7 +261,12 @@ const DocumentScreen = () => {
                 </Modal.Body>
               </Modal>
 
-              <Col sm={12} md={6} lg={4} className="d-flex justify-content-center align-items-center">
+              <Col
+                sm={12}
+                md={6}
+                lg={4}
+                className='d-flex justify-content-center align-items-center'
+              >
                 <Image
                   src={data.image}
                   alt={data.name}
@@ -278,8 +275,8 @@ const DocumentScreen = () => {
                   onClick={handleShow}
                 />
               </Col>
-              <Col  sm={12} md={6} lg={4}>
-                <ListGroup variant="flush">
+              <Col sm={12} md={6} lg={4}>
+                <ListGroup variant='flush'>
                   <ListGroup.Item>
                     <h3>{data.name}</h3>
                   </ListGroup.Item>
@@ -290,54 +287,59 @@ const DocumentScreen = () => {
                     />
                   </ListGroup.Item>
                   <ListGroup.Item>
-                  Year : <span style={{fontWeight:"bold"}}>{data.year} </span>
+                    Year :{" "}
+                    <span style={{ fontWeight: "bold" }}>{data.year} </span>
                   </ListGroup.Item>
 
                   <ListGroup.Item>
-                   
                     Description: {data.description}
                   </ListGroup.Item>
-                  <ListGroup.Item>
+                  <ListGroup.Item className='ga-5 flex items-center'>
                     <IoMdEye
-                      color="rgb(72 175 140)"
+                      color='rgb(72 175 140)'
                       onClick={handleShow}
                       size={40}
                       style={{ marginRight: "1rem", cursor: "pointer" }}
                     />
                     <FaDownload
-                    onClick={(e) => downloadFile(e)}
-                      color="rgb(72 175 140)"
+                      onClick={(e) => downloadFile(e)}
+                      color='rgb(72 175 140)'
                       size={28}
                       style={{ cursor: "pointer" }}
-                    /> {" "}
-                    {loadingDownload && <Spinner animation="border" variant="dark" />}
+                    />{" "}
+                    {loadingDownload && (
+                      <Spinner animation='border' variant='dark' />
+                    )}
                   </ListGroup.Item>
                 </ListGroup>
               </Col>
               <Col sm={12} md={12} lg={4}>
-                <Card className="d-flex align-items-center  
-                        justify-content-center rounded" style={{ color: "black" }}>
-                  <ListGroup variant="flush">
+                <Card
+                  className='d-flex align-items-center  
+                        justify-content-center rounded'
+                  style={{ color: "black" }}
+                >
+                  <ListGroup variant='flush'>
                     <ListGroup.Item>
                       <button
-                        className="btn-block mb-3"
+                        className='btn-block mb-3 flex items-center gap-2'
                         onClick={showCollections}
                         style={btnStyle}
                       >
-                        Add To Collection <FaArrowRightLong color="black" />
+                        Add To Collection <FaArrowRightLong color='black' />
                       </button>
 
                       {showCols &&
                         (loadingCollections ? (
                           <Loader />
                         ) : errorCollections ? (
-                          <Message variant="danger">
+                          <Message variant='danger'>
                             {error?.data?.message || error.error}
                           </Message>
                         ) : userInfoMediquest ? (
                           <>
                             {collections?.map((collection) => (
-                              <Row className="p-2 mt-2">
+                              <Row className='mt-2 p-2'>
                                 <Col md={9}>
                                   <strong>{collection.title}</strong>
                                 </Col>
@@ -347,38 +349,37 @@ const DocumentScreen = () => {
                                       backgroundColor: "#0b1e33",
                                       border: "#0b1e33",
                                     }}
-                                    className="btn-sm"
+                                    className='btn-sm'
                                     onClick={() =>
                                       addToCollectionHandler(collection._id)
                                     }
                                   >
-                                   <FaFolderPlus
+                                    <FaFolderPlus
                                       size={18}
                                       style={{ cursor: "pointer" }}
                                     />
-                                   
                                   </Button>
                                 </Col>{" "}
                               </Row>
                             ))}
-                             {loandingAddingToCollection && (
-                                      <Spinner
-                                        animation="border"
-                                        role="status"
-                                        style={{
-                                          width: "30px",
-                                          height: "30px",
-                                          margin: "auto",
-                                          display: "block",
-                                          color:"black",
-                                        }}
-                                      ></Spinner>
-                                    ) }
+                            {loandingAddingToCollection && (
+                              <Spinner
+                                animation='border'
+                                role='status'
+                                style={{
+                                  width: "30px",
+                                  height: "30px",
+                                  margin: "auto",
+                                  display: "block",
+                                  color: "black",
+                                }}
+                              ></Spinner>
+                            )}
                             <Button
-                              type="button"
-                              className="btn-block mt-3"
+                              type='button'
+                              className='btn-block mt-3'
                               onClick={addToNewCollectionHandler}
-                              style={{                    
+                              style={{
                                 padding: "0.5rem 2rem",
                                 color: "#75dab4",
                                 backgroundColor: "black",
@@ -389,8 +390,8 @@ const DocumentScreen = () => {
                             >
                               {loandingCollectionCreation ? (
                                 <Spinner
-                                  animation="border"
-                                  role="status"
+                                  animation='border'
+                                  role='status'
                                   style={{
                                     width: "20px",
                                     height: "20px",
@@ -405,7 +406,7 @@ const DocumentScreen = () => {
                           </>
                         ) : (
                           <Message>
-                            Please <Link to="/login">sign in</Link> So you can
+                            Please <Link to='/login'>sign in</Link> So you can
                             add the document to your collections
                           </Message>
                         ))}
@@ -416,9 +417,8 @@ const DocumentScreen = () => {
               </Col>
             </Row>
             <Row
-              className="review"
+              className='review'
               style={{
-                
                 color: "black",
                 margin: "auto",
               }}
@@ -426,27 +426,27 @@ const DocumentScreen = () => {
               <Col md={12} lg={8}>
                 <h2>Reviews</h2>
                 {data.reviews.length === 0 && <Message>No Reviews</Message>}
-                <ListGroup variant="flush">
+                <ListGroup variant='flush'>
                   {data.reviews.map((review) => (
                     <ListGroup.Item key={review._id}>
                       <Row>
-                        <Col  md={10}>
+                        <Col md={10}>
                           <strong>{review.name}</strong>
                           <Rating value={review.rating} />
                           <p>{review.createdAt.substring(0, 10)}</p>
                         </Col>
-                        <Col md={2} className="justify-content-end">
+                        <Col md={2} className='justify-content-end'>
                           {userInfoMediquest &&
                             userInfoMediquest._id === review.user && (
                               <Button
-                                variant="danger"
-                                className="btn-sm"
+                                variant='danger'
+                                className='btn-sm'
                                 onClick={() => deleteReview()}
                               >
                                 {loadingDelete ? (
                                   <Spinner
-                                    animation="border"
-                                    role="status"
+                                    animation='border'
+                                    role='status'
                                     style={{
                                       width: "20px",
                                       height: "20px",
@@ -456,7 +456,7 @@ const DocumentScreen = () => {
                                     }}
                                   ></Spinner>
                                 ) : (
-                                  <FaTrash color="white" size={20} />
+                                  <FaTrash color='white' size={20} />
                                 )}
                               </Button>
                             )}
@@ -473,27 +473,27 @@ const DocumentScreen = () => {
 
                     {userInfoMediquest ? (
                       <Form onSubmit={submitHandler}>
-                        <Form.Group className="my-2" controlId="rating">
+                        <Form.Group className='my-2' controlId='rating'>
                           <Form.Label>Rating</Form.Label>
                           <Form.Control
-                            as="select"
+                            as='select'
                             required
                             value={rating}
                             onChange={(e) => setRating(e.target.value)}
                           >
-                            <option value="">Select...</option>
-                            <option value="1">1 - Poor</option>
-                            <option value="2">2 - Fair</option>
-                            <option value="3">3 - Good</option>
-                            <option value="4">4 - Very Good</option>
-                            <option value="5">5 - Excellent</option>
+                            <option value=''>Select...</option>
+                            <option value='1'>1 - Poor</option>
+                            <option value='2'>2 - Fair</option>
+                            <option value='3'>3 - Good</option>
+                            <option value='4'>4 - Very Good</option>
+                            <option value='5'>5 - Excellent</option>
                           </Form.Control>
                         </Form.Group>
-                        <Form.Group className="my-2" controlId="comment">
+                        <Form.Group className='my-2' controlId='comment'>
                           <Form.Label>Comment</Form.Label>
                           <Form.Control
-                            as="textarea"
-                            row="3"
+                            as='textarea'
+                            row='3'
                             required
                             value={comment}
                             onChange={(e) => setComment(e.target.value)}
@@ -501,8 +501,8 @@ const DocumentScreen = () => {
                         </Form.Group>
                         <Button
                           disabled={loadingProductReview}
-                          type="submit"
-                          variant="primary"
+                          type='submit'
+                          variant='primary'
                           style={{
                             marginTop: "1rem",
                             backgroundColor: "#75D4B4",
@@ -516,7 +516,7 @@ const DocumentScreen = () => {
                       </Form>
                     ) : (
                       <Message>
-                        Please <Link to="/login">sign in</Link> to write a
+                        Please <Link to='/login'>sign in</Link> to write a
                         review
                       </Message>
                     )}
