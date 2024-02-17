@@ -158,6 +158,7 @@ const ProfileScreen = () => {
                   />
                   <Form.Control
                     label='Choose File'
+                    className='file:font-semibold file:text-black'
                     onChange={uploadFileHandler}
                     type='file'
                     style={{ width: "15rem" }}
@@ -170,6 +171,7 @@ const ProfileScreen = () => {
                   <Form.Group className='my-2' controlId='name'>
                     <Form.Label>Name</Form.Label>
                     <Form.Control
+                      className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 text-white focus-within:border-primary-green focus-within:bg-[#161616] focus-within:outline-none'
                       type='text'
                       placeholder='Enter name'
                       value={name}
@@ -180,6 +182,7 @@ const ProfileScreen = () => {
                   <Form.Group className='my-2' controlId='email'>
                     <Form.Label>Email Address</Form.Label>
                     <Form.Control
+                      className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 text-white focus-within:border-primary-green focus-within:bg-[#161616] focus-within:outline-none disabled:bg-[#313131] disabled:text-gray-600'
                       type='email'
                       placeholder='Enter email'
                       value={email}
@@ -191,6 +194,7 @@ const ProfileScreen = () => {
                   <Form.Group className='my-2' controlId='password'>
                     <Form.Label>Password</Form.Label>
                     <Form.Control
+                      className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 text-white focus-within:border-primary-green focus-within:bg-[#161616] focus-within:outline-none'
                       type='password'
                       placeholder='Enter password'
                       value={password}
@@ -201,6 +205,7 @@ const ProfileScreen = () => {
                   <Form.Group className='my-2' controlId='confirmPassword'>
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control
+                      className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 text-white focus-within:border-primary-green focus-within:bg-[#161616] focus-within:outline-none'
                       type='password'
                       placeholder='Confirm password'
                       value={confirmPassword}
