@@ -33,19 +33,19 @@ const ProfileScreen = () => {
 
   const [updateProfile, { isLoading: loadingUpdateProfile }] =
     useProfileMutation();
-    useEffect(() => {
-      function handleResize() {
-        setWidth(window.innerWidth);
-      }
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }, [width]);
   useEffect(() => {
-    if (width < 768){
-      setHeight("20vh")
-    } else{
-      setHeight("100vh") 
-    };
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [width]);
+  useEffect(() => {
+    if (width < 768) {
+      setHeight("20vh");
+    } else {
+      setHeight("100vh");
+    }
     setName(userInfoMediquest.name);
     setEmail(userInfoMediquest.email);
     setImage(userInfoMediquest.image);
@@ -53,7 +53,7 @@ const ProfileScreen = () => {
     userInfoMediquest.email,
     userInfoMediquest.name,
     userInfoMediquest.image,
-    width
+    width,
   ]);
 
   const uploadFileHandler = async (e) => {
@@ -63,7 +63,7 @@ const ProfileScreen = () => {
       const res = await uploadUserImage(formData).unwrap();
       toast.success(res.message);
       setImage(res.image);
-    } catch (err) { 
+    } catch (err) {
       toast.error(err?.data?.message || err?.data?.error);
     }
   };
@@ -88,56 +88,78 @@ const ProfileScreen = () => {
     }
   };
 
-  return ( 
+  return (
     <>
-      <Row className="profile-row pt-5">
-        <Col className="profile-sidebar p-3" md={2} style={{ height: `${height}` }}>
+      <Row className='profile-row pt-5'>
+        <Col
+          className='profile-sidebar p-3'
+          md={2}
+          style={{ height: `${height}` }}
+        >
+          <div className='mx-auto mb-20 max-md:hidden'>
+            <Image
+              src={image}
+              style={{
+                width: "150px",
+                height: "150px",
+                borderRadius:
+                  userInfoMediquest.image === "/images/user_image.png"
+                    ? "0"
+                    : "50%",
+                marginBottom: "3rem",
+              }}
+            />
+            <h1 className='text-center text-2xl font-semibold'>{name}</h1>
+          </div>
           <Link
-            to="/profile/userinfo"
-            className='profile-sidebar-item'
+            to='/profile/userinfo'
+            className='profile-sidebar-item flex items-center gap-2'
             onClick={() => setIsActive("profile")}
           >
-            <FaUser /> User Informations
+            <FaUser size={25} /> User Informations
           </Link>
           <Link
-            to="/profile/favourites"
-            className='profile-sidebar-item'
+            to='/profile/favourites'
+            className='profile-sidebar-item flex items-center gap-2'
             onClick={() => setIsActive("favourites")}
           >
-            <FaHeart /> Liked
+            <FaHeart size={25} /> Liked
           </Link>
           <Link
-            to="/profile/collections"
-            className='profile-sidebar-item'
+            to='/profile/collections'
+            className='profile-sidebar-item flex items-center gap-2'
             onClick={() => setIsActive("collections")}
           >
-            <IoIosFolderOpen /> Collections
+            <IoIosFolderOpen size={25} /> Collections
           </Link>
         </Col>
 
         <Col
-          className="content-side"
-          style={{ backgroundColor: "#161616" , minHeight: "100vh"}}
+          className='content-side'
+          style={{ backgroundColor: "#161616", minHeight: "100vh" }}
           md={10}
         >
           {isActive === "profile" ? (
-            <Row className="m-5">
+            <Row className='m-5'>
               <Col>
-                <div className="profile-image">
+                <div className='profile-image'>
                   {/*<FaCircleUser size={150} />*/}
                   <Image
                     src={image}
                     style={{
                       width: "150px",
                       height: "150px",
-                      borderRadius: userInfoMediquest.image === '/images/user_image.png' ? '0' : '50%',
+                      borderRadius:
+                        userInfoMediquest.image === "/images/user_image.png"
+                          ? "0"
+                          : "50%",
                       marginBottom: "2rem",
                     }}
                   />
                   <Form.Control
-                    label="Choose File"
+                    label='Choose File'
                     onChange={uploadFileHandler}
-                    type="file"
+                    type='file'
                     style={{ width: "15rem" }}
                   ></Form.Control>
                 </div>
@@ -145,59 +167,59 @@ const ProfileScreen = () => {
               <Col>
                 {" "}
                 <Form onSubmit={submitHandler}>
-                  <Form.Group className="my-2" controlId="name">
+                  <Form.Group className='my-2' controlId='name'>
                     <Form.Label>Name</Form.Label>
                     <Form.Control
-                      type="text"
-                      placeholder="Enter name"
+                      type='text'
+                      placeholder='Enter name'
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                     ></Form.Control>
                   </Form.Group>
 
-                  <Form.Group className="my-2" controlId="email">
+                  <Form.Group className='my-2' controlId='email'>
                     <Form.Label>Email Address</Form.Label>
                     <Form.Control
-                      type="email"
-                      placeholder="Enter email"
+                      type='email'
+                      placeholder='Enter email'
                       value={email}
                       disabled
                       onChange={(e) => setEmail(e.target.value)}
                     ></Form.Control>
                   </Form.Group>
 
-                  <Form.Group className="my-2" controlId="password">
+                  <Form.Group className='my-2' controlId='password'>
                     <Form.Label>Password</Form.Label>
                     <Form.Control
-                      type="password"
-                      placeholder="Enter password"
+                      type='password'
+                      placeholder='Enter password'
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     ></Form.Control>
                   </Form.Group>
 
-                  <Form.Group className="my-2" controlId="confirmPassword">
+                  <Form.Group className='my-2' controlId='confirmPassword'>
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control
-                      type="password"
-                      placeholder="Confirm password"
+                      type='password'
+                      placeholder='Confirm password'
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                     ></Form.Control>
                   </Form.Group>
-                  <StyledButton type="submit" text="Update" />
+                  <StyledButton type='submit' text='Update' />
                   {loadingUpload && <Loader />}
                   {loadingUpdateProfile && <Loader />}
                 </Form>
               </Col>
             </Row>
           ) : isActive === "favourites" ? (
-            <Row className="">
+            <Row className=''>
               {" "}
               <FavScreen />{" "}
             </Row>
           ) : (
-            <Row className="">
+            <Row className=''>
               {" "}
               <Collections />
             </Row>
