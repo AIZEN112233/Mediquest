@@ -27,9 +27,9 @@ const Header = () => {
   };
   return (
     <header
-      className={`fixed top-0 z-50 w-full ${router.pathname === "/" ? "" : "border-b bg-gray-950/60 backdrop-blur-md"}`}
+      className={`fixed top-0 z-50 w-full ${router.pathname === "/" || "border-b bg-gray-950/60 backdrop-blur-md"}`}
     >
-      <nav className='container mx-auto flex items-center justify-between py-4 lg:px-36'>
+      <nav className='container mx-auto flex items-center justify-between py-3 lg:px-36'>
         <div className='flex items-center'>
           <Link
             to='/'
@@ -44,19 +44,19 @@ const Header = () => {
         >
           <Link
             to='/exams'
-            className={`cursor-pointer underline-offset-2 hover:text-primary-green hover:underline max-md:text-2xl max-md:font-[600] md:relative md:left-0 lg:-left-1/3 ${router.pathname === "/exams" ? "text-primary-green underline" : ""}`}
+            className={`cursor-pointer font-medium underline-offset-8 hover:text-primary-green hover:underline max-md:text-2xl max-md:font-[600] md:relative md:left-0 lg:-left-1/3 ${router.pathname === "/exams" ? "text-primary-green underline" : ""}`}
           >
             Exams
           </Link>
           <Link
             to='/courses'
-            className={`cursor-pointer underline-offset-2 hover:text-primary-green hover:underline max-md:text-2xl max-md:font-[600] md:relative md:left-0 lg:-left-1/3 ${router.pathname === "/courses" ? "text-primary-green underline" : ""}`}
+            className={`cursor-pointer font-medium underline-offset-8 hover:text-primary-green hover:underline max-md:text-2xl max-md:font-[600] md:relative md:left-0 lg:-left-1/3 ${router.pathname === "/courses" ? "text-primary-green underline" : ""}`}
           >
             Courses
           </Link>
           <Link
             to='/summaries'
-            className={`cursor-pointer underline-offset-2 hover:text-primary-green hover:underline max-md:text-2xl max-md:font-[600] md:relative md:left-0 lg:-left-1/3 ${router.pathname === "/summaries" ? "text-primary-green underline" : ""}`}
+            className={`cursor-pointer font-medium underline-offset-8 hover:text-primary-green hover:underline max-md:text-2xl max-md:font-[600] md:relative md:left-0 lg:-left-1/3 ${router.pathname === "/summaries" ? "text-primary-green underline" : ""}`}
           >
             Summaries
           </Link>

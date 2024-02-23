@@ -76,8 +76,10 @@ const SummariesScreen = () => {
         >
           <Row className='mt-3 p-3'>
             <div className='flex justify-between'>
-              <strong className='text-xl'>Summaries</strong>
-              <strong>{summaries?.categorizedDocs.length}</strong>
+              <strong className='text-3xl'>Summaries</strong>
+              <strong className='text-3xl'>
+                {summaries?.categorizedDocs.length}
+              </strong>
             </div>
             {/*<Col>
                 <strong>16 exams</strong>

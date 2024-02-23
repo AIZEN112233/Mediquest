@@ -135,12 +135,12 @@ const ProfileScreen = () => {
         </Col>
 
         <Col
-          className='content-side'
+          className='content-side '
           style={{ backgroundColor: "#161616", minHeight: "100vh" }}
           md={10}
         >
           {isActive === "profile" ? (
-            <Row className='m-5'>
+            <Row className='m-5 flex h-[80vh] items-center'>
               <Col>
                 <div className='profile-image'>
                   {/*<FaCircleUser size={150} />*/}
@@ -165,11 +165,13 @@ const ProfileScreen = () => {
                   ></Form.Control>
                 </div>
               </Col>
-              <Col>
+              <Col className=''>
                 {" "}
                 <Form onSubmit={submitHandler}>
-                  <Form.Group className='my-2' controlId='name'>
-                    <Form.Label>Name</Form.Label>
+                  <Form.Group className='my-4' controlId='name'>
+                    <Form.Label className='text-lg font-semibold'>
+                      Name
+                    </Form.Label>
                     <Form.Control
                       className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 text-white focus-within:border-primary-green focus-within:bg-[#161616] focus-within:outline-none'
                       type='text'
@@ -179,8 +181,10 @@ const ProfileScreen = () => {
                     ></Form.Control>
                   </Form.Group>
 
-                  <Form.Group className='my-2' controlId='email'>
-                    <Form.Label>Email Address</Form.Label>
+                  <Form.Group className='my-4' controlId='email'>
+                    <Form.Label className='text-lg font-semibold'>
+                      Email Address
+                    </Form.Label>
                     <Form.Control
                       className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 text-white focus-within:border-primary-green focus-within:bg-[#161616] focus-within:outline-none disabled:bg-[#313131] disabled:text-gray-600'
                       type='email'
@@ -191,8 +195,10 @@ const ProfileScreen = () => {
                     ></Form.Control>
                   </Form.Group>
 
-                  <Form.Group className='my-2' controlId='password'>
-                    <Form.Label>Password</Form.Label>
+                  <Form.Group className='my-4' controlId='password'>
+                    <Form.Label className='text-lg font-semibold'>
+                      Password
+                    </Form.Label>
                     <Form.Control
                       className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 text-white focus-within:border-primary-green focus-within:bg-[#161616] focus-within:outline-none'
                       type='password'
@@ -202,8 +208,10 @@ const ProfileScreen = () => {
                     ></Form.Control>
                   </Form.Group>
 
-                  <Form.Group className='my-2' controlId='confirmPassword'>
-                    <Form.Label>Confirm Password</Form.Label>
+                  <Form.Group className='my-4' controlId='confirmPassword'>
+                    <Form.Label className='text-lg font-semibold'>
+                      Confirm Password
+                    </Form.Label>
                     <Form.Control
                       className='w-full rounded-md border-2 bg-[#161616] px-3 py-2 text-white focus-within:border-primary-green focus-within:bg-[#161616] focus-within:outline-none'
                       type='password'

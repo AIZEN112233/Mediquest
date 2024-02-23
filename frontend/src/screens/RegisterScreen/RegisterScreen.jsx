@@ -133,7 +133,7 @@ const RegisterScreen = () => {
       <div className='register-form-container flex h-screen items-center justify-center'>
         <Col md={8}>
           {!showOTPinput ? (
-            <div className=' mx-auto mt-4 flex w-full max-w-[550px] flex-col gap-3 rounded-xl bg-[#1616169f] p-[50px] max-md:bg-transparent max-md:px-2'>
+            <div className=' mx-auto flex w-full max-w-[500px] flex-col gap-3 rounded-xl bg-[#1616169f] px-[50px] py-[25px] backdrop-blur-sm max-md:bg-transparent max-md:px-2'>
               <h1 className='white mb-3 mt-4 font-playFair text-5xl'>
                 Welcome
               </h1>

@@ -6,40 +6,44 @@ import "./ProfileScreen.css";
 import ExamCard from "../../components/ExamCard";
 import Message from "../../components/Message";
 import "../exams/ExamsSCreen.css";
+import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 
 const ProfileScreen = () => {
   const { data: userProfile, isLoading, error } = useGetUserProfileQuery();
 
   return (
     <>
-      <Row className="exams-row">
+      <Row className='exams-row'>
         <Col
-          className="content-side"
-          style={{ backgroundColor: "#161616",  minHeight:"100vh"}}
-        
+          className='content-side'
+          style={{ backgroundColor: "#161616", minHeight: "100vh" }}
         >
-          <Row className="p-3 mt-2">
-            <Col>
-              <h2>Favourites</h2>
-            </Col>
+          <Row className='mt-2 flex items-center justify-between  p-3'>
+            <h2 className='w-fit text-3xl font-bold'>Liked</h2>
+            <h2 className='flex  w-fit gap-2 text-3xl font-bold items-center'>
+              {userProfile?.favourites.length}{" "}
+              <span>
+                <BsFillHeartFill size={27} className='text-primary-green' />
+              </span>
+            </h2>
           </Row>
 
           {isLoading ? (
             <Loader />
           ) : error ? (
-            <Message variant="danger">{error.data.message}</Message>
+            <Message variant='danger'>{error.data.message}</Message>
           ) : userProfile?.favourites.length === 0 ? (
-            <Row className="justify-content-center">
+            <Row className='justify-content-center'>
               <Col md={10}>
                 <Message>You have no Favourites !</Message>
               </Col>
             </Row>
           ) : (
-            <Row className="  justify-content-center">
+            <Row className='  justify-content-center'>
               {userProfile?.favourites.map((document) => (
                 <Col key={document._id} sm={6} md={5} lg={4} xl={3}>
-                  <div className="card-container">
-                  <ExamCard document={document} />
+                  <div className='card-container'>
+                    <ExamCard document={document} />
                   </div>
                 </Col>
               ))}

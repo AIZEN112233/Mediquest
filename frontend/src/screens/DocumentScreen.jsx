@@ -219,6 +219,8 @@ const DocumentScreen = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  console.log(data)
+
   return (
     <>
       <div className='document-container'>

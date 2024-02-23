@@ -25,7 +25,7 @@ const ProfileScreen = () => {
         >
           <Row className="p-3 mt-2">
             <Col>
-              <h2>Collections</h2>
+              <h2 className="text-3xl font-bold">Collections</h2>
             </Col>
           </Row>
           {isLoading ? (
