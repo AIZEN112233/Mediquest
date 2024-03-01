@@ -75,7 +75,9 @@ const CoursesScreen = () => {
         >
           <div className='bg-red mt-3 flex justify-between p-3'>
             <strong className='text-3xl'>Courses</strong>
-            <strong className='text-3xl'>{courses?.categorizedDocs.length}</strong>
+            <strong className='text-3xl'>
+              {courses?.categorizedDocs.length}
+            </strong>
           </div>
           {loadingFiltered && <Loader />}
           {error && (
