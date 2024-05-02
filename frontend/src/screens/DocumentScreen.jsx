@@ -219,7 +219,7 @@ const DocumentScreen = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  console.log(data)
+  console.log(data);
 
   return (
     <>
@@ -269,13 +269,15 @@ const DocumentScreen = () => {
                 lg={4}
                 className='d-flex justify-content-center align-items-center'
               >
-                <Image
-                  src={data.image}
-                  alt={data.name}
-                  style={{ cursor: "pointer" }}
-                  fluid
-                  onClick={handleShow}
-                />
+                <Link to={`${data.file}`} target='_blank'>
+                  <Image
+                    src={data.image}
+                    alt={data.name}
+                    style={{ cursor: "pointer" }}
+                    fluid
+                    // onClick={handleShow}
+                  />
+                </Link>
               </Col>
               <Col sm={12} md={6} lg={4}>
                 <ListGroup variant='flush'>
@@ -297,12 +299,14 @@ const DocumentScreen = () => {
                     Description: {data.description}
                   </ListGroup.Item>
                   <ListGroup.Item className='ga-5 flex items-center'>
-                    <IoMdEye
-                      color='rgb(72 175 140)'
-                      onClick={handleShow}
-                      size={40}
-                      style={{ marginRight: "1rem", cursor: "pointer" }}
-                    />
+                    <Link to={`${data.file}`} target='_blank'>
+                      <IoMdEye
+                        color='rgb(72 175 140)'
+                        onClick={handleShow}
+                        size={40}
+                        style={{ marginRight: "1rem", cursor: "pointer" }}
+                      />
+                    </Link>
                     <FaDownload
                       onClick={(e) => downloadFile(e)}
                       color='rgb(72 175 140)'

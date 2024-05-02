@@ -4,27 +4,26 @@ import { apiSlice } from "./apiSlice";
 export const documentApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getDocuments: builder.query({
-      query: ({keyword,pageNumber,category}) => ({
+      query: ({ keyword, pageNumber, category }) => ({
         url: DOCS_URL,
-        params:  {keyword, pageNumber, category} ,
+        params: { keyword, pageNumber, category },
       }),
       keepUnusedDataFor: 5,
-      providesTags: ['Documents'],
-    }), 
-   
+      providesTags: ["Documents"],
+    }),
+
     filterDocuments: builder.mutation({
       query: (data) => ({
         url: `${DOCS_URL}/filter`,
-        method: "POST",  
+        method: "POST",
         body: data,
       }),
       keepUnusedDataFor: 5,
-      providesTags: ['Documents'],
+      providesTags: ["Documents"],
     }),
     getDocumentDetails: builder.query({
       query: (id) => ({
         url: `${DOCS_URL}/${id}`,
-
       }),
       keepUnusedDataFor: 5,
     }),
@@ -46,39 +45,39 @@ export const documentApiSlice = apiSlice.injectEndpoints({
     uploadDocumentImage: builder.mutation({
       query: (data) => ({
         url: `/api/upload`,
-        method: 'POST',
+        method: "POST",
         body: data,
       }),
     }),
     uploadDocumentFile: builder.mutation({
       query: (data) => ({
         url: `/api/upload/upload-pdf`,
-        method: 'POST',
+        method: "POST",
         body: data,
       }),
     }),
     deleteDocument: builder.mutation({
       query: (documentId) => ({
         url: `${DOCS_URL}/${documentId}`,
-        method: 'DELETE',
+        method: "DELETE",
       }),
-      providesTags: ['Document'],
+      providesTags: ["Document"],
     }),
     createReview: builder.mutation({
       query: (data) => ({
         url: `${DOCS_URL}/${data.documentId}/reviews`,
-        method: 'POST',
+        method: "POST",
         body: data,
       }),
-      invalidatesTags: ['Document'],
+      invalidatesTags: ["Document"],
     }),
     deleteComment: builder.mutation({
       query: (data) => ({
         url: `${DOCS_URL}/${data.documentId}/reviews`,
-        method: 'DELETE',
+        method: "DELETE",
         body: data,
       }),
-      invalidatesTags: ['Document'],
+      invalidatesTags: ["Document"],
     }),
     getTopProducts: builder.query({
       query: () => `${DOCS_URL}/top`,
@@ -87,16 +86,14 @@ export const documentApiSlice = apiSlice.injectEndpoints({
     downloadDocument: builder.mutation({
       query: (data) => ({
         url: `${DOCS_URL}/${data.documentId}/download`,
-        method: 'POST',
+        method: "POST",
       }),
-      
     }),
     getDownloadDocument: builder.query({
       query: (id) => ({
         url: `${DOCS_URL}/${id}/download`,
-        responseType: 'blob'
+        responseType: "blob",
       }),
-     
     }),
   }),
 });
