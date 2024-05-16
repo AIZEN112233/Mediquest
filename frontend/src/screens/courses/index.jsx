@@ -1,11 +1,12 @@
 /* eslint-disable eqeqeq */
 import React, { useState, useEffect, useMemo } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
-import "./ExamsSCreen.css";
+import "../exams/ExamsSCreen.css";
 import { Filter, ExamCard } from "../../components";
 import { FaAngleLeft } from "react-icons/fa6";
 import axios from "axios";
 import data from "../../db/data.json";
+//todo fix import for css
 
 let CoursesScreen = () => {
   let [courses, setCourses] = useState([]);

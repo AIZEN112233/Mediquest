@@ -8,7 +8,7 @@ import {
   useGetDocumentsQuery,
   useFilterDocumentsMutation,
 } from "../../slices/documentApiSlice";
-import "./ExamsSCreen.css";
+import "../exams/ExamsSCreen.css";
 import { Year, ExamCard, Loader, Message } from "../../components";
 
 const SummariesScreen = () => {
