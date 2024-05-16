@@ -1,5 +1,5 @@
 import "./filterRadio.css";
-import Input from "../../components/Input";
+import { Input } from "../../components";
 import { IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";
 
@@ -15,7 +15,9 @@ function Year({ handleChange }) {
           className='sidebar-title relative mt-2 flex -translate-x-10 items-center gap-1'
           onClick={() => setIshidden((prev) => !prev)}
         >
-          <IoIosArrowForward className={isHidden || "rotate-90 text-primary-green"} />
+          <IoIosArrowForward
+            className={isHidden || "rotate-90 text-primary-green"}
+          />
           Year
         </h2>
 

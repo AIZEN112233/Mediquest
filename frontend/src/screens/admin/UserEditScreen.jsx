@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
-import FormContainer from "../../components/FormContainer";
+import { FormContainer, Loader, Message } from "../../components";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import {
@@ -52,15 +50,15 @@ const UserEditScreen = () => {
     <>
       <div
         style={{
-          height:"100vh",
+          height: "100vh",
           backgroundColor: "white",
           padding: "2rem 5rem",
           color: "black",
-          paddingTop:"7rem",
-          minHeight:"100vh",
+          paddingTop: "7rem",
+          minHeight: "100vh",
         }}
       >
-        <Link to="/admin/userlist" className="btn btn-light my-3">
+        <Link to='/admin/userlist' className='btn btn-light my-3'>
           Go Back
         </Link>
         <FormContainer>
@@ -69,43 +67,43 @@ const UserEditScreen = () => {
           {isLoading ? (
             <Loader />
           ) : error ? (
-            <Message variant="danger">
+            <Message variant='danger'>
               {error?.data?.message || error.error}
             </Message>
           ) : (
             <Form onSubmit={submitHandler}>
-              <Form.Group className="my-2" controlId="name">
+              <Form.Group className='my-2' controlId='name'>
                 <Form.Label>Name</Form.Label>
                 <Form.Control
-                  type="name"
-                  placeholder="Enter name"
+                  type='name'
+                  placeholder='Enter name'
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 ></Form.Control>
               </Form.Group>
 
-              <Form.Group className="my-2" controlId="email">
+              <Form.Group className='my-2' controlId='email'>
                 <Form.Label>Email Address</Form.Label>
                 <Form.Control
-                  type="email"
-                  placeholder="Enter email"
+                  type='email'
+                  placeholder='Enter email'
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 ></Form.Control>
               </Form.Group>
 
-              <Form.Group className="my-2" controlId="isadmin">
+              <Form.Group className='my-2' controlId='isadmin'>
                 <Form.Check
-                  type="checkbox"
-                  label="Is Admin"
+                  type='checkbox'
+                  label='Is Admin'
                   checked={isAdmin}
                   onChange={(e) => setIsAdmin(e.target.checked)}
                 ></Form.Check>
               </Form.Group>
 
               <Button
-                type="submit"
-                variant="primary"
+                type='submit'
+                variant='primary'
                 style={{
                   marginTop: "1rem",
                   backgroundColor: "#75D4B4",

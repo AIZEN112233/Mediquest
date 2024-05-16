@@ -5,13 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaUser, FaHeart } from "react-icons/fa";
 import { IoIosFolderOpen } from "react-icons/io";
 import { toast } from "react-toastify";
-import Loader from "../../components/Loader";
+import { Button, Loader } from "../../components";
 import {
   useProfileMutation,
   useUploadUserImageMutation,
 } from "../../slices/usersApiSlice";
 import { setCredentials } from "../../slices/authSlice";
-import StyledButton from "../../components/Button";
 import FavScreen from "./FavScreen";
 import Collections from "./Collections";
 import "./ProfileScreen.css";
@@ -220,7 +219,7 @@ const ProfileScreen = () => {
                       onChange={(e) => setConfirmPassword(e.target.value)}
                     ></Form.Control>
                   </Form.Group>
-                  <StyledButton type='submit' text='Update' />
+                  <Button type='submit' text='Update' />
                   {loadingUpload && <Loader />}
                   {loadingUpdateProfile && <Loader />}
                 </Form>

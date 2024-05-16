@@ -3,9 +3,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Form, Row, Col } from "react-bootstrap";
 import { Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/Loader";
-import FormContainer from "../../components/FormContainer";
-import StyledButton from "../../components/Button";
+import { Loader } from "../../components";
+import { FormContainer, Button } from "../../components";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import {
   useLoginMutation,
@@ -68,7 +67,7 @@ const LoginScreen = () => {
 
   return (
     <div className='login-bg grid h-screen place-items-center pt-[100px]'>
-      <div className='flex flex-col gap-6 rounded-md  bg-[#1616169b] backdrop-blur px-[54px] py-[40px] text-center'>
+      <div className='flex flex-col gap-6 rounded-md  bg-[#1616169b] px-[54px] py-[40px] text-center backdrop-blur'>
         <div className='flex flex-col gap-3'>
           <h1 className='font-playFair text-[64px] font-[500]'>Welcome</h1>
           <p className='text-[24px] font-[300]'>
@@ -115,7 +114,7 @@ const LoginScreen = () => {
             Forgot Password?
           </p>
           <div className='mx-auto'>
-            <StyledButton text='START LEARNING' type='submit' />
+            <Button text='START LEARNING' type='submit' />
           </div>
         </form>
         {loadingOTP && <Loader style={{ color: "white !important" }} />}

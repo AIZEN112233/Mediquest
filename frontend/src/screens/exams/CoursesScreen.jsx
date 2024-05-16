@@ -1,125 +1,73 @@
-import React, { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
-import { Pagination } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import {
-  useGetDocumentsQuery,
-  useFilterDocumentsMutation,
-} from "../../slices/documentApiSlice";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
+/* eslint-disable eqeqeq */
+import React, { useState, useEffect, useMemo } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
 import "./ExamsSCreen.css";
-import ExamCard from "../../components/ExamCard";
-import Year from "../../components/year/filterRadio";
+import { Filter, ExamCard } from "../../components";
+import { FaAngleLeft } from "react-icons/fa6";
+import axios from "axios";
+import data from "../../db/data.json";
 
-const CoursesScreen = () => {
-  const [courses, setCourses] = useState();
-  const [isOpen, setIsOpen] = useState(true);
-  const { pageNumber, keyword } = useParams();
-  const { data, isLoading, isError } = useGetDocumentsQuery({
-    keyword,
-    pageNumber,
-    category: "course",
-  });
+let CoursesScreen = () => {
+  let [courses, setCourses] = useState([]);
+  let [filtered, setFiltered] = useState([]);
+  let [isOpen, setIsOpen] = useState(true);
+  //this state tracks the active section of the filter and it should be only one opened
+  let [activeFilter, setActiveFilter] = useState("");
+  let { pageNumber, keyword } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [filterDocuments, { isLoading: loadingFiltered }, error] =
-    useFilterDocumentsMutation();
+  const year =
+    searchParams.get("year") !== "all" ? searchParams.get("year") : null;
+  const faq =
+    searchParams.get("faq") !== "all" ? searchParams.get("faq") : null;
 
-  const handleChange = async (event) => {
-    event.preventDefault();
-
-    if (!event.target.value) {
-      setCourses(data);
-    } else {
-      try {
-        const newDocuments = await filterDocuments({
-          keyword,
-          pageNumber,
-          category: "course",
-          year: event.target.value,
-        }).unwrap();
-
-        setCourses(newDocuments);
-      } catch (error) {
-        toast.error(error?.data?.message || error.error);
-      }
+  filtered = useMemo(() => {
+    if (courses) {
+      return courses?.filter((item) => {
+        // Filter by both year and faq
+        return (item.year == year || !year) && (item.faq == faq || !faq);
+      });
     }
-  };
+    return courses;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [year, faq, courses]);
 
   useEffect(() => {
-    if (data) {
-      setCourses(data);
-    }
-  }, [data]);
+    // axios
+    //   .get(`http://localhost:5000/api/documents?category=course`)
+    //   .then((res) => {
+    //     setCourses(res.data.categorizedDocs);
+    //   });
+
+    //simulate a promise with new filtered data
+    Promise.resolve(setTimeout(() => setCourses(data.categorizedDocs), 1000));
+  }, []);
+
   return (
     <>
-      <Row className='exams-row'>
-        <button
-          className='fixed bottom-0 right-0 m-3 hidden w-fit rounded bg-primary-green px-3 py-2 font-bold text-black max-md:inline'
-          onClick={() => setIsOpen((prev) => !prev)}
-        >
-          Filter
-        </button>
-        {isOpen && (
-          <Col className='filter-side' md={2}>
-            <Year handleChange={handleChange} />
-          </Col>
-        )}
-
-        <Col
-          className='content-side'
-          style={{ backgroundColor: "#161616", minHeight: "100vh" }}
-          md={10}
-        >
+      <div className='mt-[77px] flex h-[calc(100dvh-77px)] overflow-auto'>
+        {/* here is where we filter stuff currently its not performant and not shareable in the future i will solve it */}
+        <Filter />
+        <div>
           <div className='bg-red mt-3 flex justify-between p-3'>
             <strong className='text-3xl'>Courses</strong>
-            <strong className='text-3xl'>{courses?.categorizedDocs.length}</strong>
+            <strong className='text-3xl'>{filtered?.length}</strong>
           </div>
-          {loadingFiltered && <Loader />}
-          {error && (
-            <Message variant='danger'>
-              {error?.data?.message || error?.error}
-            </Message>
-          )}
-          {isLoading ? (
-            <Loader />
-          ) : isError ? (
-            <Message variant='danger'>
-              {isError?.data?.message || isError?.error}
-            </Message>
-          ) : (
-            <Row className='m-2'>
-              {courses?.categorizedDocs.map((document) => (
-                <Col key={document._id} sm={12} md={5} lg={4} xl={3}>
+          <ul className='grid list-none grid-cols-5 gap-4 p-4 max-xl:grid-cols-3 max-md:grid-cols-2'>
+            {filtered.length !== 0 ? (
+              filtered?.map((document) => (
+                <li key={document._id}>
                   <div className='card-container'>
                     <ExamCard document={document} className='m-3' />
                   </div>
-                </Col>
-              ))}
-              {courses?.categorizedDocs.length === 0 && (
-                <Row className='justify-content-center'>
-                  <Col md={10}>
-                    <Message>no matches were found!</Message>
-                  </Col>
-                </Row>
-              )}
-            </Row>
-          )}
-          {courses?.pages > 1 && (
-            <Pagination className='mx-auto my-2'>
-              {[...Array(courses?.pages).keys()].map((x) => (
-                <LinkContainer key={x + 1} to={`/courses/page/${x + 1}`}>
-                  <Pagination.Item active={x + 1 === courses?.page}>
-                    {x + 1}
-                  </Pagination.Item>
-                </LinkContainer>
-              ))}
-            </Pagination>
-          )}
-        </Col>
-      </Row>
+                </li>
+              ))
+            ) : (
+              <h1>NO Documents to Show Here</h1>
+            )}
+          </ul>
+        </div>
+      </div>
     </>
   );
 };

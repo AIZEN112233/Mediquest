@@ -5,9 +5,9 @@ import Spinner from "react-bootstrap/Spinner";
 import { Row, Col, ListGroup, Card, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useSendOTPMutation } from "../slices/usersApiSlice";
-import Loader from "../components/Loader";
+import { Loader } from "../components";
 
-export default function () {
+export default function OTPinput() {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ export default function () {
       }, 4000);
     } else {
       toast.error(
-        "The code you have entered is not correct, try again or re-send the code"
+        "The code you have entered is not correct, try again or re-send the code",
       );
     }
   };
@@ -74,13 +74,13 @@ export default function () {
   return (
     <>
       <div
-        className="container-forgot"
+        className='container-forgot'
         style={{
           backgoundColor: "#f1f2f5",
         }}
       >
         <Row
-          className="justify-content-center"
+          className='justify-content-center'
           style={{
             paddingTop: "7rem",
             paddingBottom: "7rem",
@@ -91,10 +91,10 @@ export default function () {
         >
           <Col md={6}>
             <Card
-              className="p-3 d-flex align-items-center  
-                        justify-content-center rounded shadow-lg mx-3"
+              className='d-flex align-items-center justify-content-center  
+                        mx-3 rounded p-3 shadow-lg'
             >
-              <ListGroup variant="flush">
+              <ListGroup variant='flush'>
                 {isLoading && <Loader />}
                 <ListGroup.Item>
                   <h2>Enter Verification Code</h2>
@@ -105,11 +105,11 @@ export default function () {
 
                 <ListGroup.Item>
                   <input
-                    maxLength="1"
-                    type="text"
-                    name=""
-                    id=""
-                    className="rounded otp-input"
+                    maxLength='1'
+                    type='text'
+                    name=''
+                    id=''
+                    className='otp-input rounded'
                     onChange={(e) =>
                       setOTPinput([
                         e.target.value,
@@ -120,11 +120,11 @@ export default function () {
                     }
                   ></input>
                   <input
-                    maxLength="1"
-                    type="text"
-                    name=""
-                    id=""
-                    className="rounded otp-input"
+                    maxLength='1'
+                    type='text'
+                    name=''
+                    id=''
+                    className='otp-input rounded'
                     onChange={(e) =>
                       setOTPinput([
                         OTPinput[0],
@@ -135,11 +135,11 @@ export default function () {
                     }
                   ></input>
                   <input
-                    maxLength="1"
-                    type="text"
-                    name=""
-                    id=""
-                    className="rounded otp-input"
+                    maxLength='1'
+                    type='text'
+                    name=''
+                    id=''
+                    className='otp-input rounded'
                     onChange={(e) =>
                       setOTPinput([
                         OTPinput[0],
@@ -150,11 +150,11 @@ export default function () {
                     }
                   ></input>
                   <input
-                    maxLength="1"
-                    type="text"
-                    name=""
-                    id=""
-                    className="rounded otp-input"
+                    maxLength='1'
+                    type='text'
+                    name=''
+                    id=''
+                    className='otp-input rounded'
                     rounded
                     onChange={(e) =>
                       setOTPinput([
@@ -168,17 +168,17 @@ export default function () {
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Button
-                    className="verify-btn btn-block shadow-none"
-                    type="button"
+                    className='verify-btn btn-block shadow-none'
+                    type='button'
                     onClick={() => verfiyOTP()}
                   >
                     {loadingCheck ? (
                       <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
+                        as='span'
+                        animation='border'
+                        size='sm'
+                        role='status'
+                        aria-hidden='true'
                       />
                     ) : (
                       "Verify Account"

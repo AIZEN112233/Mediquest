@@ -51,7 +51,7 @@ const ExamCard = ({ document }) => {
 
   return (
     <>
-      <div className='card rounded-md border border-white font-sans'>
+      <div className='card rounded-md border border-white bg-black font-sans'>
         <Link to={`/document/${document._id}`} className='product-image'>
           <Image className='product-image' src={document.image} />
         </Link>

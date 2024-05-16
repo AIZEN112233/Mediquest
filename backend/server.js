@@ -9,6 +9,7 @@ import userRoutes from "./routes/userRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js";
+import cors from "cors";
 dotenv.config();
 
 connectDB();
@@ -18,6 +19,7 @@ const port = process.env.PORT || 8000;
 const app = express();
 
 // Body parsing
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
