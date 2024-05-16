@@ -3,7 +3,7 @@ import { useGetUserProfileQuery } from "../../slices/usersApiSlice";
 import "./ProfileScreen.css";
 import { Message, ExamCard, Loader } from "../../components";
 import "../exams/ExamsSCreen.css";
-import { BsFillHeartFill, BsHeart } from "react-icons/bs";
+import { BsFillHeartFill } from "react-icons/bs";
 const ProfileScreen = () => {
   const { data: userProfile, isLoading, error } = useGetUserProfileQuery();
 

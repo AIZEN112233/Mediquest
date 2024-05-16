@@ -3,11 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Spinner, Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import {
-  Loader,
-  FormContainer,
-  Button as StyledButton,
-} from "../../components";
+import { Button as StyledButton } from "../../components";
 import {
   useRegisterMutation,
   useSendCodeMutation,

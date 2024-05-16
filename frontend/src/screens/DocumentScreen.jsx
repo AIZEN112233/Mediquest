@@ -12,7 +12,6 @@ import {
   Form,
   Card,
   Modal,
-  SpinnerDownload,
   Spinner,
 } from "react-bootstrap";
 import { IoMdEye } from "react-icons/io";
@@ -23,7 +22,6 @@ import {
   useGetDocumentDetailsQuery,
   useCreateReviewMutation,
   useDeleteCommentMutation,
-  useGetDownloadDocumentQuery,
   useDownloadDocumentMutation,
 } from "../slices/documentApiSlice";
 import {
