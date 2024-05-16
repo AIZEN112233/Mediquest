@@ -16,4 +16,3 @@ export { default as PrivateRoute } from "./PrivateRoute";
 export { default as Rating } from "./Rating";
 export { default as ResetRoute } from "./ResetRoute";
 export { default as SearchBox } from "./SearchBox";
-export { default as Year } from "./year/filterRadio";

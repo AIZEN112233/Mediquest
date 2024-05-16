@@ -8,7 +8,7 @@ import {
   useFilterDocumentsMutation,
 } from "../../slices/documentApiSlice";
 import "../exams/ExamsSCreen.css";
-import { Year, ExamCard, Loader, Message } from "../../components";
+import { ExamCard, Loader, Message } from "../../components";
 
 const SummariesScreen = () => {
   const [summaries, setSummaries] = useState();
@@ -24,25 +24,25 @@ const SummariesScreen = () => {
   const [filterDocuments, { isLoading: loadingFiltered }] =
     useFilterDocumentsMutation();
 
-  const handleChange = async (event) => {
-    event.preventDefault();
+  // const handleChange = async (event) => {
+  //   event.preventDefault();
 
-    if (!event.target.value) {
-      setSummaries(data);
-    } else {
-      try {
-        const newDocuments = await filterDocuments({
-          keyword,
-          pageNumber,
-          category: "summary",
-          year: event.target.value,
-        }).unwrap();
-        setSummaries(newDocuments);
-      } catch (error) {
-        toast.error(error?.data?.message || error.error);
-      }
-    }
-  };
+  //   if (!event.target.value) {
+  //     setSummaries(data);
+  //   } else {
+  //     try {
+  //       const newDocuments = await filterDocuments({
+  //         keyword,
+  //         pageNumber,
+  //         category: "summary",
+  //         year: event.target.value,
+  //       }).unwrap();
+  //       setSummaries(newDocuments);
+  //     } catch (error) {
+  //       toast.error(error?.data?.message || error.error);
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
     if (data) {
@@ -59,11 +59,11 @@ const SummariesScreen = () => {
         >
           Filter
         </button>
-        {isOpen && (
+        {/* {isOpen && (
           <Col className='filter-side' md={2}>
             <Year handleChange={handleChange} />
           </Col>
-        )}
+        )} */}
 
         <Col
           className='content-side'
