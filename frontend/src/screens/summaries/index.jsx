@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
-import { Pagination } from "react-bootstrap";
+import { Row, Col, Pagination } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
