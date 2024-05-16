@@ -1,11 +1,9 @@
-import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { useGetUserProfileQuery } from "../../slices/usersApiSlice";
 import "./ProfileScreen.css";
 import { Message, ExamCard, Loader } from "../../components";
 import "../exams/ExamsSCreen.css";
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
-
 const ProfileScreen = () => {
   const { data: userProfile, isLoading, error } = useGetUserProfileQuery();
 

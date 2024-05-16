@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -33,7 +32,6 @@ import {
   useGetMyCollectionsQuery,
 } from "../slices/collectionsApiSlice";
 import { Meta, Message, Loader } from "../components";
-
 const DocumentScreen = () => {
   const { id: documentId } = useParams();
   const [rating, setRating] = useState(0);

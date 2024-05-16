@@ -1,8 +1,6 @@
-import React from "react";
 import { toast } from "react-toastify";
 import { useAddToFavMutation } from "../slices/usersApiSlice";
 import { FaRegHeart } from "react-icons/fa6";
-
 const Heart = ({ id }) => {
   const [addTofav] = useAddToFavMutation();
 
@@ -20,7 +18,7 @@ const Heart = ({ id }) => {
       <FaRegHeart
         onClick={submitHandler}
         size={17}
-        color="#75dab4"
+        color='#75dab4'
         style={{ lineHeight: "50%" }}
       />
     </>
