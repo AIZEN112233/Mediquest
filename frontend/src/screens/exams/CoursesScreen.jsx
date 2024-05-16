@@ -49,7 +49,7 @@ let CoursesScreen = () => {
       <div className='mt-[77px] flex h-[calc(100dvh-77px)] overflow-auto'>
         {/* here is where we filter stuff currently its not performant and not shareable in the future i will solve it */}
         <Filter />
-        <div>
+        <div className='max-md:w-screen'>
           <div className='bg-red mt-3 flex justify-between p-3'>
             <strong className='text-3xl'>Courses</strong>
             <strong className='text-3xl'>{filtered?.length}</strong>
