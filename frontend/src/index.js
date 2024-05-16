@@ -13,10 +13,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import store from "./store";
 import App from "./App";
-import OtpRoute from "./components/OtpRoute";
-import ResetRoute from "./components/ResetRoute";
-import PrivateRoute from "./components/PrivateRoute";
-import AdminRoute from "./components/AdminRoute";
+import { AdminRoute, PrivateRoute, ResetRoute, OtpRoute } from "./components";
 
 import {
   CollectionScreen,

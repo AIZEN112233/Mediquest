@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { Pagination } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 import { toast } from "react-toastify";
 import {
   useGetDocumentsQuery,
   useFilterDocumentsMutation,
 } from "../../slices/documentApiSlice";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
 import "./ExamsSCreen.css";
-import ExamCard from "../../components/ExamCard";
-import Year from "../../components/year/filterRadio";
-import Filter from "../../components/Filter";
+import { Filter, Year, ExamCard, Loader, Message } from "../../components";
 
 const ExamsScreen = () => {
   const [exams, setExams] = useState();
@@ -54,7 +47,7 @@ const ExamsScreen = () => {
   }, [data]);
   return (
     <main className='flex h-dvh overflow-auto pt-[77px]'>
-      <div className='sticky top-0 h-dvh bg-red-500'>
+      <div className='sticky top-0 h-dvh'>
         <Filter />
       </div>
       <div className='h-[calc(199vh)] overflow-scroll'>main</div>

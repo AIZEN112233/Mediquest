@@ -4,9 +4,11 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import Loader from "../../components/Loader";
-import FormContainer from "../../components/FormContainer";
-import StyledButton from "../../components/Button";
+import {
+  Loader,
+  FormContainer,
+  Button as StyledButton,
+} from "../../components";
 import {
   useRegisterMutation,
   useSendCodeMutation,

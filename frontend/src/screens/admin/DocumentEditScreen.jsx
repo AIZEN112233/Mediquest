@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 //import Form from "react-bootstrap/Form";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
-import FormContainer from "../../components/FormContainer";
+import { FormContainer, Loader, Message } from "../../components";
 import { toast } from "react-toastify";
 import {
   useGetDocumentDetailsQuery,
@@ -107,7 +105,7 @@ const ProductEditScreen = () => {
           minHeight: "100vh",
         }}
       >
-        <Link to="/admin/documentlist" className="btn btn-light my-3">
+        <Link to='/admin/documentlist' className='btn btn-light my-3'>
           Go Back
         </Link>
         <FormContainer>
@@ -116,97 +114,93 @@ const ProductEditScreen = () => {
           {isLoading ? (
             <Loader />
           ) : error ? (
-            <Message variant="danger">{error.data.message}</Message>
+            <Message variant='danger'>{error.data.message}</Message>
           ) : (
             <Form onSubmit={submitHandler}>
-              <Form.Group controlId="name">
+              <Form.Group controlId='name'>
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                   style={{ color: "black" }}
-                  type="name"
-                  placeholder="Enter name"
+                  type='name'
+                  placeholder='Enter name'
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId="image">
+              <Form.Group controlId='image'>
                 <Form.Label>Image</Form.Label>
                 <Form.Control
                   style={{ color: "black" }}
-                  type="text"
-                  placeholder="Enter image url"
+                  type='text'
+                  placeholder='Enter image url'
                   value={image}
                   onChange={(e) => setImage(e.target.value)}
                 ></Form.Control>
                 <Form.Control
-                  label="Choose File"
+                  label='Choose File'
                   onChange={uploadFileHandler}
-                  type="file"
+                  type='file'
                 ></Form.Control>
 
                 {loadingUpload && <Loader />}
               </Form.Group>
-              <Form.Group controlId="year">
+              <Form.Group controlId='year'>
                 <Form.Label>Year</Form.Label>
                 <Form.Control
                   style={{ color: "black" }}
-                  type="number"
-                  placeholder="Enter year"
+                  type='number'
+                  placeholder='Enter year'
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
                 ></Form.Control>
               </Form.Group>
 
-             
-
-              <Form.Group controlId="file">
+              <Form.Group controlId='file'>
                 <Form.Label>file</Form.Label>
                 <Form.Control
                   style={{ color: "black" }}
-                  type="text"
-                  placeholder="Enter file url"
+                  type='text'
+                  placeholder='Enter file url'
                   value={pdf}
                   onChange={(e) => setPdf(e.target.value)}
                 ></Form.Control>
                 <Form.Control
-                  label="Choose File"
+                  label='Choose File'
                   onChange={uploadPdfHandler}
-                  type="file"
+                  type='file'
                 ></Form.Control>
 
                 {loadingUploadFile && <Loader />}
               </Form.Group>
 
-             
-
-              <Form.Group controlId="categorySelector">
+              <Form.Group controlId='categorySelector'>
                 <Form.Label>Category</Form.Label>
                 <Form.Select
-                  aria-label="Default select example"
+                  aria-label='Default select example'
                   onChange={(e) => setCategory(e.target.value)}
                   value={category}
                 >
-                  <option value="">Select Category</option>
-                  <option value="course">course</option>
-                  <option value="exam">exam</option>
-                  <option value="summary">summary</option>
+                  <option value=''>Select Category</option>
+                  <option value='course'>course</option>
+                  <option value='exam'>exam</option>
+                  <option value='summary'>summary</option>
                 </Form.Select>
               </Form.Group>
 
-              <Form.Group controlId="description">
+              <Form.Group controlId='description'>
                 <Form.Label>Description</Form.Label>
                 <Form.Control
                   style={{ color: "black" }}
-                  type="text"
-                  placeholder="Enter description"
+                  type='text'
+                  placeholder='Enter description'
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 ></Form.Control>
               </Form.Group>
 
               <Button
-                type="submit"
-                variant="primary"
+                type='submit'
+                variant='primary'
                 style={{
                   marginTop: "1rem",
                   backgroundColor: "#75D4B4",

@@ -2,11 +2,8 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useGetDocumentsQuery } from "../../slices/documentApiSlice";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
-import Paginate from "../../components/Paginate";
 import "./ExamsSCreen.css";
-import ExamCard from "../../components/ExamCard";
+import { ExamCard, Paginate, Message, Loader } from "../../components";
 
 const ExamsScreen = () => {
   const { pageNumber, keyword } = useParams();
@@ -17,16 +14,16 @@ const ExamsScreen = () => {
 
   return (
     <>
-      <Row className="exams-row">
+      <Row className='exams-row'>
         {/* <Col className="filter-side" md={2} style={{ height: "100vh" }}>
           first
         </Col> */}
 
         <Col
-          className="content-side mx-3"
+          className='content-side mx-3'
           style={{ backgroundColor: "#161616", minHeight: "100vh" }}
         >
-          <Row className="p-3 mt-3">
+          <Row className='mt-3 p-3'>
             <Col>
               <strong>Results</strong>
             </Col>
@@ -36,17 +33,19 @@ const ExamsScreen = () => {
           </Row>
           {isLoading ? (
             <Loader />
-            
-          ) : isError ? ( 
-            <Message variant="danger">
+          ) : isError ? (
+            <Message variant='danger'>
               {isError?.data?.message || isError?.error}
             </Message>
           ) : (
-            <Row className="m-1">
+            <Row className='m-1'>
               {data?.documents.map((document) => (
                 <Col key={document._id} sm={12} md={5} lg={4} xl={3}>
-                  <div className="card-container" style={{display: "flex", justifyContent:"center"}}>
-                    <ExamCard document={document} className="m-2" />
+                  <div
+                    className='card-container'
+                    style={{ display: "flex", justifyContent: "center" }}
+                  >
+                    <ExamCard document={document} className='m-2' />
                   </div>
                 </Col>
               ))}

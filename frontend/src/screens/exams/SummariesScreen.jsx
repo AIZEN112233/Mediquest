@@ -8,11 +8,8 @@ import {
   useGetDocumentsQuery,
   useFilterDocumentsMutation,
 } from "../../slices/documentApiSlice";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
 import "./ExamsSCreen.css";
-import ExamCard from "../../components/ExamCard";
-import Year from "../../components/year/filterRadio";
+import { Year, ExamCard, Loader, Message } from "../../components";
 
 const SummariesScreen = () => {
   const [summaries, setSummaries] = useState();

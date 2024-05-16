@@ -20,7 +20,7 @@ import SpinnerDownload from "react-bootstrap/Spinner";
 import { IoMdEye } from "react-icons/io";
 import { FaDownload } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
-import Rating from "../components/Rating";
+import { Rating } from "../components";
 import { FaArrowRightLong } from "react-icons/fa6";
 import {
   useGetDocumentDetailsQuery,
@@ -34,9 +34,7 @@ import {
   useAddMoreDocsMutation,
   useGetMyCollectionsQuery,
 } from "../slices/collectionsApiSlice";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
-import Meta from "../components/Meta";
+import { Meta, Message, Loader } from "../components";
 
 const DocumentScreen = () => {
   const { id: documentId } = useParams();

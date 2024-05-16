@@ -13,7 +13,7 @@ const Filter = () => {
     faq: faq || "all",
   };
   useEffect(() => {
-      setSearchParams(filterValues);
+    setSearchParams(filterValues);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year, faq]);
 
@@ -33,7 +33,7 @@ const Filter = () => {
   ];
 
   return (
-    <div className='sticky top-0 w-[300px] bg-primary-green/5'>
+    <div className='sticky top-0 h-full w-[300px] bg-primary-green/5'>
       <div className='mx-auto w-[200px] items-center'>
         <h1 className='m-3 p-4 text-4xl font-bold'>Filter</h1>
         <div>
@@ -93,7 +93,7 @@ const Filter = () => {
                       type='radio'
                       name='fac'
                       value={fac}
-                      checked={fac == searchParams.get('faq')}
+                      checked={fac == searchParams.get("faq")}
                       onChange={(e) => setFaq(e.target.value)}
                       className='h-4 w-4 appearance-none rounded-sm border-2 border-primary-green checked:bg-primary-green'
                     />

@@ -2,15 +2,13 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button, Row, Col } from "react-bootstrap";
 import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
 import { useParams } from "react-router-dom";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
-import Paginate from "../../components/Paginate";
 import {
   useGetDocumentsQuery,
   useDeleteDocumentMutation,
   useCreateDocumentMutation,
 } from "../../slices/documentApiSlice";
 import { toast } from "react-toastify";
+import { Paginate, Loader, Message } from "../../components";
 
 const DocumentListScreen = () => {
   const { pageNumber } = useParams();
@@ -54,22 +52,22 @@ const DocumentListScreen = () => {
           backgroundColor: "white",
           height: "100vh",
           padding: "2rem 5rem",
-          color:"black",
-          paddingTop:"8rem",
+          color: "black",
+          paddingTop: "8rem",
           overflow: "scroll",
           overflowX: "hidden",
         }}
       >
         <Row
-          className="align-items-center"
-          style={{ backgroundColor: "white", color:"black" }}
+          className='align-items-center'
+          style={{ backgroundColor: "white", color: "black" }}
         >
           <Col>
             <h1>Documents</h1>
           </Col>
-          <Col className="text-end">
+          <Col className='text-end'>
             <Button
-              className="my-3"
+              className='my-3'
               style={{
                 backgroundColor: "#75D4B4",
                 border: "none",
@@ -88,7 +86,7 @@ const DocumentListScreen = () => {
         {isLoading ? (
           <Loader />
         ) : error ? (
-          <Message variant="danger">{error.data.message}</Message>
+          <Message variant='danger'>{error.data.message}</Message>
         ) : (
           <>
             <Table
@@ -96,8 +94,8 @@ const DocumentListScreen = () => {
               bordered
               hover
               responsive
-              className="table-sm"
-              style={{ backgroundColor: "white", color:"black" }}
+              className='table-sm'
+              style={{ backgroundColor: "white", color: "black" }}
             >
               <thead>
                 <tr>
@@ -121,15 +119,17 @@ const DocumentListScreen = () => {
                       <LinkContainer
                         to={`/admin/document/${document._id}/edit`}
                       >
-                        <Button variant="light" className="btn-sm mx-2">
+                        <Button variant='light' className='btn-sm mx-2'>
                           <FaEdit />
                         </Button>
                       </LinkContainer>
                       <Button
-                        variant="danger"
-                        className="btn-sm"
-                        onClick={() => {deleteHandler(document._id)
-                        console.log(data)}}
+                        variant='danger'
+                        className='btn-sm'
+                        onClick={() => {
+                          deleteHandler(document._id);
+                          console.log(data);
+                        }}
                       >
                         <FaTrash style={{ color: "white" }} />
                       </Button>

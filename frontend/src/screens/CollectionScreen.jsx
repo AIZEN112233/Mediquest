@@ -13,8 +13,7 @@ import {
 import { FaTrash } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
+import { Loader, Message } from "../components";
 import {
   useGetCollectionDetailsQuery,
   useDeleteCollectionMutation,

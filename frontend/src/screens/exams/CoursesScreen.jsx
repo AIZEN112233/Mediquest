@@ -2,11 +2,10 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import "./ExamsSCreen.css";
-import ExamCard from "../../components/ExamCard";
+import { Filter, ExamCard } from "../../components";
 import { FaAngleLeft } from "react-icons/fa6";
 import axios from "axios";
 import data from "../../db/data.json";
-import Filter from "../../components/Filter";
 
 let CoursesScreen = () => {
   let [courses, setCourses] = useState([]);

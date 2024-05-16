@@ -1,10 +1,8 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-import Loader from "../../components/Loader";
 import { useGetUserProfileQuery } from "../../slices/usersApiSlice";
 import "./ProfileScreen.css";
-import ExamCard from "../../components/ExamCard";
-import Message from "../../components/Message";
+import { Message, ExamCard, Loader } from "../../components";
 import "../exams/ExamsSCreen.css";
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 
@@ -20,7 +18,7 @@ const ProfileScreen = () => {
         >
           <Row className='mt-2 flex items-center justify-between  p-3'>
             <h2 className='w-fit text-3xl font-bold'>Liked</h2>
-            <h2 className='flex  w-fit gap-2 text-3xl font-bold items-center'>
+            <h2 className='flex  w-fit items-center gap-2 text-3xl font-bold'>
               {userProfile?.favourites.length}{" "}
               <span>
                 <BsFillHeartFill size={27} className='text-primary-green' />
