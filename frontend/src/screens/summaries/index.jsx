@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
-import { Pagination } from "react-bootstrap";
+import { Row, Col, Pagination } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -8,8 +7,8 @@ import {
   useGetDocumentsQuery,
   useFilterDocumentsMutation,
 } from "../../slices/documentApiSlice";
-import "./ExamsSCreen.css";
-import { Year, ExamCard, Loader, Message } from "../../components";
+import "../exams/ExamsSCreen.css";
+import { ExamCard, Loader, Message } from "../../components";
 
 const SummariesScreen = () => {
   const [summaries, setSummaries] = useState();
@@ -25,25 +24,25 @@ const SummariesScreen = () => {
   const [filterDocuments, { isLoading: loadingFiltered }] =
     useFilterDocumentsMutation();
 
-  const handleChange = async (event) => {
-    event.preventDefault();
+  // const handleChange = async (event) => {
+  //   event.preventDefault();
 
-    if (!event.target.value) {
-      setSummaries(data);
-    } else {
-      try {
-        const newDocuments = await filterDocuments({
-          keyword,
-          pageNumber,
-          category: "summary",
-          year: event.target.value,
-        }).unwrap();
-        setSummaries(newDocuments);
-      } catch (error) {
-        toast.error(error?.data?.message || error.error);
-      }
-    }
-  };
+  //   if (!event.target.value) {
+  //     setSummaries(data);
+  //   } else {
+  //     try {
+  //       const newDocuments = await filterDocuments({
+  //         keyword,
+  //         pageNumber,
+  //         category: "summary",
+  //         year: event.target.value,
+  //       }).unwrap();
+  //       setSummaries(newDocuments);
+  //     } catch (error) {
+  //       toast.error(error?.data?.message || error.error);
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
     if (data) {
@@ -60,11 +59,11 @@ const SummariesScreen = () => {
         >
           Filter
         </button>
-        {isOpen && (
+        {/* {isOpen && (
           <Col className='filter-side' md={2}>
             <Year handleChange={handleChange} />
           </Col>
-        )}
+        )} */}
 
         <Col
           className='content-side'

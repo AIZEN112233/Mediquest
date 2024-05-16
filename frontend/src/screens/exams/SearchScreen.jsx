@@ -1,10 +1,8 @@
-import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useGetDocumentsQuery } from "../../slices/documentApiSlice";
 import "./ExamsSCreen.css";
 import { ExamCard, Paginate, Message, Loader } from "../../components";
-
 const ExamsScreen = () => {
   const { pageNumber, keyword } = useParams();
   const { data, isLoading, isError } = useGetDocumentsQuery({

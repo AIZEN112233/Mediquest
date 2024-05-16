@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { Spinner } from "react-bootstrap";
 import {
   Row,
   Col,
@@ -9,9 +8,9 @@ import {
   Card,
   Button,
   Form,
+  Spinner,
 } from "react-bootstrap";
-import { FaTrash } from "react-icons/fa";
-import { FaEdit } from "react-icons/fa";
+import { FaTrash, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { Loader, Message } from "../components";
 import {

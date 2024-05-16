@@ -1,12 +1,9 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Spinner from "react-bootstrap/Spinner";
-import { Row, Col, ListGroup, Card, Button } from "react-bootstrap";
+import { Row, Col, ListGroup, Card, Button, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useSendOTPMutation } from "../slices/usersApiSlice";
 import { Loader } from "../components";
-
 export default function OTPinput() {
   const location = useLocation();
   const navigate = useNavigate();

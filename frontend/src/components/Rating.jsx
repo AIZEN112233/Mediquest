@@ -1,7 +1,4 @@
-import React from "react";
 import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
-
-
 const Rating = ({ value, text }) => {
   return (
     <div className='rating flex px-2'>

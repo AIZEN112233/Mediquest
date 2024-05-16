@@ -6,7 +6,7 @@ import {
   useFilterDocumentsMutation,
 } from "../../slices/documentApiSlice";
 import "./ExamsSCreen.css";
-import { Filter, Year, ExamCard, Loader, Message } from "../../components";
+import { Filter, ExamCard, Loader, Message } from "../../components";
 
 const ExamsScreen = () => {
   const [exams, setExams] = useState();

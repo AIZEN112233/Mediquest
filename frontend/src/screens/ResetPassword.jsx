@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Row, Col, ListGroup, Card, Button, Form } from "react-bootstrap";
@@ -6,7 +5,6 @@ import { toast } from "react-toastify";
 import { useResetPasswordMutation } from "../slices/usersApiSlice";
 import { Message, Loader } from "../components";
 import "./profile/ProfileScreen.css";
-
 const ResetPassword = () => {
   const location = useLocation();
   const data = location.state;

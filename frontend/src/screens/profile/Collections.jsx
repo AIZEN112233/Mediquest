@@ -1,4 +1,3 @@
-import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { PiFoldersFill } from "react-icons/pi";
@@ -6,7 +5,6 @@ import { Loader, Message } from "../../components";
 import { useGetMyCollectionsQuery } from "../../slices/collectionsApiSlice";
 import "./ProfileScreen.css";
 import "../exams/ExamsSCreen.css";
-
 const ProfileScreen = () => {
   const { data, isLoading, error } = useGetMyCollectionsQuery();
 

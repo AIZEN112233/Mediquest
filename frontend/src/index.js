@@ -33,7 +33,6 @@ import {
   UserListScreen,
   DocumentEditScreen,
 } from "./screens";
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>

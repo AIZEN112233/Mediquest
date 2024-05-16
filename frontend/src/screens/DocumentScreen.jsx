@@ -1,11 +1,8 @@
-import React from "react";
 import { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-import { FaFolderPlus } from "react-icons/fa";
 import axios from "axios";
-import Modal from "react-bootstrap/Modal";
 import {
   Row,
   Col,
@@ -14,19 +11,17 @@ import {
   Button,
   Form,
   Card,
+  Modal,
+  Spinner,
 } from "react-bootstrap";
-import { Spinner } from "react-bootstrap";
-import SpinnerDownload from "react-bootstrap/Spinner";
 import { IoMdEye } from "react-icons/io";
-import { FaDownload } from "react-icons/fa";
-import { FaTrash } from "react-icons/fa";
+import { FaDownload, FaTrash, FaFolderPlus } from "react-icons/fa";
 import { Rating } from "../components";
 import { FaArrowRightLong } from "react-icons/fa6";
 import {
   useGetDocumentDetailsQuery,
   useCreateReviewMutation,
   useDeleteCommentMutation,
-  useGetDownloadDocumentQuery,
   useDownloadDocumentMutation,
 } from "../slices/documentApiSlice";
 import {
@@ -35,7 +30,6 @@ import {
   useGetMyCollectionsQuery,
 } from "../slices/collectionsApiSlice";
 import { Meta, Message, Loader } from "../components";
-
 const DocumentScreen = () => {
   const { id: documentId } = useParams();
   const [rating, setRating] = useState(0);

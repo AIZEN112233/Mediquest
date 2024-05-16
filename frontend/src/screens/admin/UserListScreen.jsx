@@ -1,4 +1,3 @@
-import React from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button } from "react-bootstrap";
 import { FaTrash, FaEdit, FaCheck, FaTimes } from "react-icons/fa";
@@ -8,7 +7,6 @@ import {
   useGetUsersQuery,
 } from "../../slices/usersApiSlice";
 import { toast } from "react-toastify";
-
 const UserListScreen = () => {
   const { data: users, refetch, isLoading, error } = useGetUsersQuery();
 
