@@ -39,7 +39,7 @@ const Filter = () => {
         <div>
           <div>
             <div
-              className='flex items-center text-2xl font-semibold'
+              className='flex items-center gap-2 text-2xl font-semibold'
               onClick={() =>
                 setActiveFilter((prev) => (prev === "year" ? "" : "year"))
               }
@@ -71,7 +71,7 @@ const Filter = () => {
           </div>
           <div>
             <div
-              className='flex items-center text-2xl font-semibold'
+              className='flex items-center gap-2 text-2xl font-semibold'
               onClick={() =>
                 setActiveFilter((prev) => (prev === "faq" ? "" : "faq"))
               }
