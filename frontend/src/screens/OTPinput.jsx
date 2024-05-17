@@ -184,7 +184,7 @@ export default function OTPinput() {
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <p style={{ fontSize: "medium" }}>Didn't recieve code?</p>{" "}
-                  <a
+                  <span
                     style={{
                       color: disable ? "gray" : "#38b58b",
                       cursor: disable ? "none" : "pointer",
@@ -194,7 +194,7 @@ export default function OTPinput() {
                     onClick={() => resendOTP()}
                   >
                     {disable ? `Resend OTP in ${timerCount}s` : "Resend OTP"}
-                  </a>
+                  </span>
                 </ListGroup.Item>
               </ListGroup>
             </Card>

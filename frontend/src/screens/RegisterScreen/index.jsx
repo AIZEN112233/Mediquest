@@ -207,7 +207,6 @@ const RegisterScreen = () => {
                     type='submit'
                     style={{
                       margin: "auto",
-                      display: "block",
                       display: "flex",
                       marginTop: "1rem",
                     }}
@@ -238,7 +237,7 @@ const RegisterScreen = () => {
                   </h3>
                   <p className='text-base text-white'>
                     Enter the confirmation code we sent to {email}.{" "}
-                    <a
+                    <span
                       style={{
                         color: disable ? "gray" : "#38b58b",
                         cursor: disable ? "none" : "pointer",
@@ -250,7 +249,7 @@ const RegisterScreen = () => {
                       {disable
                         ? `Resend Code in ${timerCount}s`
                         : "Resend Code"}
-                    </a>
+                    </span>
                   </p>
                   {LoadingOTP && (
                     <Spinner
@@ -299,7 +298,7 @@ const RegisterScreen = () => {
                         "Next"
                       )}
                     </Button>
-                    <a
+                    <span
                       className='block pb-3'
                       style={{
                         color: "#38b58b",
@@ -312,7 +311,7 @@ const RegisterScreen = () => {
                       onClick={() => setShowOTPinput(false)}
                     >
                       Go Back
-                    </a>
+                    </span>
                   </Form>
                 </div>
               </Col>
