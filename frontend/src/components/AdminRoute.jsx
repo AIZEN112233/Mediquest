@@ -1,5 +1,5 @@
-import { Navigate, Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const AdminRoute = () => {
   const { userInfoMediquest } = useSelector((state) => state.auth);
@@ -7,6 +7,6 @@ const AdminRoute = () => {
     <Outlet />
   ) : (
     <Navigate to='/login' replace />
-  ); 
+  );
 };
 export default AdminRoute;
