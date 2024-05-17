@@ -337,7 +337,7 @@ const DocumentScreen = () => {
                         ) : userInfoMediquest ? (
                           <>
                             {collections?.map((collection) => (
-                              <Row className='mt-2 p-2'>
+                              <Row key={collection._id} className='mt-2 p-2'>
                                 <Col md={9}>
                                   <strong>{collection.title}</strong>
                                 </Col>
