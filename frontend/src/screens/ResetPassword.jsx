@@ -22,7 +22,7 @@ const ResetPassword = () => {
       toast.error("Passwords do not match");
     } else {
       try {
-        const res = await resetPassword({
+        await resetPassword({
           email,
           password,
         }).unwrap();
