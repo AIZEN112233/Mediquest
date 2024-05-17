@@ -107,7 +107,7 @@ const Header = () => {
                 <Link to='/profile' className='cursor-pointer'>
                   <img
                     src={userInfoMediquest.image}
-                    alt='user image'
+                    alt='profile'
                     className='h-8 w-8 rounded-full'
                   />
                 </Link>
