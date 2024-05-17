@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 import "../screens/exams/ExamsSCreen.css";
@@ -25,7 +24,7 @@ const ExamCard = ({ document }) => {
       return obj._id === document._id;
     });
     setColor(found ? "#fa3e5f" : "#75dab4");
-  }, [userProfile?.favourites]);
+  }, [document._id, userProfile?.favourites]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
