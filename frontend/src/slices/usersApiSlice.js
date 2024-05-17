@@ -28,7 +28,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         url: `${USERS_URL}/profile`,
         method: "GET",
       }),
-      providesTags: ['User'],
+      providesTags: ["User"],
       keepUnusedDataFor: 5,
     }),
     profile: builder.mutation({
@@ -41,7 +41,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     uploadUserImage: builder.mutation({
       query: (data) => ({
         url: `/api/upload`,
-        method: 'POST',
+        method: "POST",
         body: data,
       }),
     }),
@@ -49,13 +49,13 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: USERS_URL,
       }),
-      providesTags: ['User'],
+      providesTags: ["User"],
       keepUnusedDataFor: 5,
     }),
     deleteUser: builder.mutation({
       query: (userId) => ({
         url: `${USERS_URL}/${userId}`,
-        method: 'DELETE',
+        method: "DELETE",
       }),
     }),
     getUserDetails: builder.query({
@@ -67,46 +67,46 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     updateUser: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/${data.userId}`,
-        method: 'PUT',
+        method: "PUT",
         body: data,
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ["User"],
     }),
     addToFav: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/toFav`,
-        method: 'POST',
+        method: "POST",
         body: data,
-      }), 
-      invalidatesTags: ['Document'],
-      providesTags: ['Document'],
+      }),
+      invalidatesTags: ["Document"],
+      providesTags: ["Document"],
     }),
     favList: builder.query({
       query: () => ({
         url: `${USERS_URL}/favourites`,
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ["User"],
     }),
     sendOTP: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/recoveryemail`,
-        method: 'POST',
+        method: "POST",
         body: data,
-      }), 
+      }),
     }),
     resetPassword: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/resetpassword`,
-        method: 'POST',
+        method: "POST",
         body: data,
-      }), 
+      }),
     }),
     sendCode: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/verificationcode`,
-        method: 'POST',
+        method: "POST",
         body: data,
-      }), 
+      }),
     }),
   }),
 });

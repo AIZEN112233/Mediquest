@@ -1,10 +1,10 @@
 const Input = ({ handleChange, value, title, name }) => {
   return (
-    <label className='sidebar-label-containe flex gap-4 items-center max-md:block max-md:mx-2 py-2 md:mx-4'>
+    <label className='sidebar-label-containe flex items-center gap-4 py-2 max-md:mx-2 max-md:block md:mx-4'>
       <input
         onChange={handleChange}
         type='radio'
-        className='border-2 w-4 h-4 rounded-sm border-primary-green checked:bg-primary-green appearance-none'
+        className='h-4 w-4 appearance-none rounded-sm border-2 border-primary-green checked:bg-primary-green'
         value={value}
         name={name}
       />
