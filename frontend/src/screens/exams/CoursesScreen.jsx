@@ -23,9 +23,9 @@ const CoursesScreen = () => {
       ? searchParams.get("semester")
       : null;
 
-  const unit =
-    year >= 2 && searchParams.get("unit") !== "all"
-      ? searchParams.get("unit")
+  const unite =
+    year == 2 && year == 3 && searchParams.get("unite") !== "all"
+      ? searchParams.get("unite")
       : null;
 
   const filtered = useMemo(() => {
@@ -35,14 +35,14 @@ const CoursesScreen = () => {
         const faqMatch = item.faq == faq || !faq;
         const moduleMatch = item.module == module || !module;
         const semesterMatch = item.semester == semester || !semester;
-        const unitMatch = item.unit == unit || !unit;
+        const uniteMatch = item.unite == unite || !unite;
         return (
-          yearMatch && faqMatch && moduleMatch && semesterMatch && unitMatch
+          yearMatch && faqMatch && moduleMatch && semesterMatch && uniteMatch
         );
       });
     }
     return courses;
-  }, [year, faq, module, semester, unit, courses]);
+  }, [year, faq, module, semester, unite, courses]);
 
   useEffect(() => {
     // Uncomment below axios call when backend is available

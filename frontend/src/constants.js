@@ -69,3 +69,27 @@ export const SecondYear = [
     module: ["anatomy", "histologie", "physiologie", "biochimie"],
   },
 ];
+export const ThirdYear = [
+  {
+    unite: "appareil cardiovasculaire et respiratoire",
+    module: [
+      "biochimie",
+      "radiologie",
+      "psychologie",
+      "sémiologie",
+      "physiopathologie",
+    ],
+  },
+  {
+    unite: "appareil neurologique, locomoteur et cutané",
+    module: ["biochimie", "radiologie", "sémiologie", "physiopathologie"],
+  },
+  {
+    unite: "appareil endocrinien, genital et urinaire",
+    module: ["biochimie", "radiologie", "sémiologie", "physiopathologie"],
+  },
+  {
+    unite: "appareil digestif et organes hématopoïétiques",
+    module: ["biochimie", "radiologie", "sémiologie", "physiopathologie"],
+  },
+];

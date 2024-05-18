@@ -4,6 +4,7 @@ import { FaAngleLeft } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 import {
   SecondYear,
+  ThirdYear,
   faculties,
   firstYearFirstHalfModules,
   firstYearSecondHalfModules,
@@ -27,7 +28,10 @@ const Filter = () => {
   if (searchParams.get("year") == "1") {
     filterValues.module = module || "all";
     filterValues.semester = semester || "semester 1";
-  } else if (searchParams.get("year") == "2") {
+  } else if (
+    searchParams.get("year") == "2" &&
+    searchParams.get("year") == "3"
+  ) {
     filterValues.module = module || "all";
     filterValues.unite = unite || "all";
   }
@@ -242,6 +246,52 @@ const Filter = () => {
               ))}
             </>
           ) : null}
+          {/* Third year filter */}
+          {searchParams.get("year") == "3" ? (
+            <>
+              {ThirdYear.map((unite) => (
+                <div key={unite.unite}>
+                  <div
+                    className='flex items-center gap-2 text-2xl font-semibold'
+                    onClick={() =>
+                      setActiveFilter((prev) =>
+                        prev === unite.unite ? "" : unite.unite,
+                      )
+                    }
+                  >
+                    <span>
+                      <FaAngleLeft
+                        size={17}
+                        className={`${activeFilter === unite.unite && "-rotate-90"}`}
+                      />
+                    </span>
+                    {unite.unite}
+                  </div>
+                  <ul className='ml-12'>
+                    {activeFilter === unite.unite &&
+                      unite.module.map((module) => (
+                        <li key={module} className='flex items-center gap-2'>
+                          <span className='line-clamp-1 flex-grow'>
+                            {module}
+                          </span>
+                          <input
+                            type='radio'
+                            name='module'
+                            value={module}
+                            checked={
+                              module === searchParams.get("module") &&
+                              searchParams.get("unite") === unite.unite
+                            }
+                            onChange={handleSecondYear}
+                            className='h-4 w-4 appearance-none rounded-sm border-2 border-primary-green checked:bg-primary-green'
+                          />
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              ))}
+            </>
+          ) : null}
         </div>
       </div>
       <button
@@ -258,3 +308,4 @@ export default Filter;
 
 //todo: make it responsive
 //todo: refactor the first year to be like second one
+//todo: make component for the filter items
