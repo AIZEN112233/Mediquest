@@ -1,14 +1,13 @@
 /* eslint-disable eqeqeq */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaAngleLeft } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 import {
+  FirstYear,
   FourthYear,
   SecondYear,
   ThirdYear,
   faculties,
-  firstYearFirstHalfModules,
-  firstYearSecondHalfModules,
   years,
 } from "../constants";
 
@@ -56,7 +55,7 @@ const Filter = () => {
   return (
     <>
       <div
-        className={`sticky top-0 z-[1000] h-full w-[300px] bg-primary-green/5 max-md:absolute max-md:bg-[#161616]/95 ${isOpen ? "max-md:translate-x-0" : "max-md:-translate-x-full"}`}
+        className={`sticky top-0 z-[1000] h-full w-[300px] overflow-auto bg-primary-green/5 max-md:absolute max-md:bg-[#161616]/95 ${isOpen ? "max-md:translate-x-0" : "max-md:-translate-x-full"}`}
       >
         <div className='mx-auto w-[200px] items-center'>
           <h1 className='m-3 p-4 text-4xl font-bold'>Filter</h1>
@@ -127,80 +126,50 @@ const Filter = () => {
           {/* the first year filter */}
           {searchParams.get("year") == 1 ? (
             <>
-              <div>
-                <div
-                  className='flex items-center gap-2 text-2xl font-semibold'
-                  onClick={() =>
-                    setActiveFilter((prev) =>
-                      prev === "semester 1" ? "" : "semester 1",
-                    )
-                  }
-                >
-                  <span>
-                    <FaAngleLeft
-                      size={17}
-                      className={`${activeFilter === "semester 1" && "-rotate-90"}`}
-                    />
-                  </span>
-                  Semester 1
+              {FirstYear.map((year) => (
+                <div>
+                  <div
+                    className='flex items-center gap-2 text-2xl font-semibold'
+                    onClick={() =>
+                      setActiveFilter((prev) =>
+                        prev === `semester ${year.semester}`
+                          ? ""
+                          : `semester ${year.semester}`,
+                      )
+                    }
+                  >
+                    <span>
+                      <FaAngleLeft
+                        size={17}
+                        className={`${activeFilter === `semester ${year.semester}` && "-rotate-90"}`}
+                      />
+                    </span>
+                    Semester {year.semester}
+                  </div>
+                  <ul className='ml-12'>
+                    {activeFilter === `semester ${year.semester}` &&
+                      year.module.map((module) => (
+                        <li key={module} className='flex items-center gap-2'>
+                          <span className='line-clamp-1 flex-grow'>
+                            {module}
+                          </span>
+                          <input
+                            type='radio'
+                            name='module'
+                            value={module}
+                            checked={
+                              module === searchParams.get("module") &&
+                              searchParams.get("semester") ===
+                                `semester ${year.semester}`
+                            }
+                            onChange={handleFirstYear}
+                            className='h-4 w-4 appearance-none rounded-sm border-2 border-primary-green checked:bg-primary-green'
+                          />
+                        </li>
+                      ))}
+                  </ul>
                 </div>
-                <ul className='ml-12'>
-                  {activeFilter === "semester 1" &&
-                    firstYearFirstHalfModules.map((module) => (
-                      <li key={module} className='flex items-center gap-2'>
-                        <span className='line-clamp-1 flex-grow'>{module}</span>
-                        <input
-                          type='radio'
-                          name='module'
-                          value={module}
-                          checked={
-                            module === searchParams.get("module") &&
-                            searchParams.get("semester") === "semester 1"
-                          }
-                          onChange={handleFirstYear}
-                          className='h-4 w-4 appearance-none rounded-sm border-2 border-primary-green checked:bg-primary-green'
-                        />
-                      </li>
-                    ))}
-                </ul>
-              </div>
-              <div>
-                <div
-                  className='flex items-center gap-2 text-2xl font-semibold'
-                  onClick={() =>
-                    setActiveFilter((prev) =>
-                      prev === "semester 2" ? "" : "semester 2",
-                    )
-                  }
-                >
-                  <span>
-                    <FaAngleLeft
-                      size={17}
-                      className={`${activeFilter === "semester 2" && "-rotate-90"}`}
-                    />
-                  </span>
-                  Semester 2
-                </div>
-                <ul className='ml-12'>
-                  {activeFilter === "semester 2" &&
-                    firstYearSecondHalfModules.map((module) => (
-                      <li key={module} className='flex items-center gap-2'>
-                        <span className='line-clamp-1 flex-grow'>{module}</span>
-                        <input
-                          type='radio'
-                          name='module'
-                          value={module}
-                          checked={
-                            module === searchParams.get("module") &&
-                            searchParams.get("semester") === "semester 2"
-                          }
-                          onChange={handleFirstYear}
-                          className='h-4 w-4 appearance-none rounded-sm border-2 border-primary-green checked:bg-primary-green'
-                        />
-                      </li>
-                    ))}
-                </ul>
-              </div>
+              ))}
             </>
           ) : null}
           {/* second year filter */}
@@ -343,6 +312,4 @@ const Filter = () => {
 
 export default Filter;
 
-//todo: make it responsive
-//todo: refactor the first year to be like second one
 //todo: make component for the filter items

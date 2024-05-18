@@ -22,29 +22,37 @@ export const faculties = [
   "Tizi ouzou",
 ];
 
-export const firstYearFirstHalfModules = [
-  "all",
-  "anatomy",
-  "cytologie",
-  "biophysique",
-  "biochimie",
-  "biostat",
-  "chimie generale",
-  "chimie organique",
-  "ssh",
-  "embryologie",
-];
-export const firstYearSecondHalfModules = [
-  "all",
-  "anatomy",
-  "cytologie",
-  "biophysique",
-  "biochimie",
-  "biostat",
-  "chimie generale",
-  "chimie organique",
-  "histologie",
-  "physiologie",
+export const FirstYear = [
+  {
+    semester: "1",
+    module: [
+      "all",
+      "anatomy",
+      "cytologie",
+      "biophysique",
+      "biochimie",
+      "biostat",
+      "chimie generale",
+      "chimie organique",
+      "ssh",
+      "embryologie",
+    ],
+  },
+  {
+    semester: "2",
+    module: [
+      "all",
+      "anatomy",
+      "cytologie",
+      "biophysique",
+      "biochimie",
+      "biostat",
+      "chimie generale",
+      "chimie organique",
+      "histologie",
+      "physiologie",
+    ],
+  },
 ];
 
 export const SecondYear = [
