@@ -23,7 +23,7 @@ const Filter = () => {
   };
   if (searchParams.get("year") == "1") {
     filterValues.module = module || "all";
-    filterValues.semester = semester || "semester";
+    filterValues.semester = semester || "semester 1";
   }
   // todo wrap it in useMemo
   useEffect(() => {
@@ -137,7 +137,10 @@ const Filter = () => {
                           type='radio'
                           name='module'
                           value={module}
-                          checked={module == searchParams.get("module")}
+                          checked={
+                            module === searchParams.get("module") &&
+                            searchParams.get("semester") === "semester 1"
+                          }
                           onChange={handleFirstYear}
                           className='h-4 w-4 appearance-none rounded-sm border-2 border-primary-green checked:bg-primary-green'
                         />
@@ -171,7 +174,10 @@ const Filter = () => {
                           type='radio'
                           name='module'
                           value={module}
-                          checked={module == searchParams.get("module")}
+                          checked={
+                            module === searchParams.get("module") &&
+                            searchParams.get("semester") === "semester 2"
+                          }
                           onChange={handleFirstYear}
                           className='h-4 w-4 appearance-none rounded-sm border-2 border-primary-green checked:bg-primary-green'
                         />
