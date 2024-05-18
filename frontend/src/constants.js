@@ -46,3 +46,26 @@ export const firstYearSecondHalfModules = [
   "histologie",
   "physiologie",
 ];
+
+export const SecondYear = [
+  {
+    unite: "cardio-respiratoire",
+    module: ["anatomy", "histologie", "physiologie", "biophysique"],
+  },
+  {
+    unite: "digestif",
+    module: ["anatomy", "histologie", "physiologie", "biochimie"],
+  },
+  {
+    unite: "urinaire",
+    module: ["anatomy", "histologie", "physiologie", "biochimie"],
+  },
+  {
+    unite: "endocrine",
+    module: ["anatomy", "histologie", "physiologie", "biochimie"],
+  },
+  {
+    unite: "nerveux",
+    module: ["anatomy", "histologie", "physiologie", "biochimie"],
+  },
+];

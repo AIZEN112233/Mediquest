@@ -1,7 +1,9 @@
+/* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
 import { FaAngleLeft } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 import {
+  SecondYear,
   faculties,
   firstYearFirstHalfModules,
   firstYearSecondHalfModules,
@@ -10,12 +12,13 @@ import {
 
 const Filter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [year, setYear] = useState(undefined);
-  const [faq, setFaq] = useState(undefined);
-  const [module, setModule] = useState(undefined);
-  const [semester, setSemester] = useState(undefined);
+  const [year, setYear] = useState();
+  const [faq, setFaq] = useState();
+  const [module, setModule] = useState();
+  const [semester, setSemester] = useState();
   const [activeFilter, setActiveFilter] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [unite, setUnite] = useState();
 
   const filterValues = {
     year: year || "all",
@@ -24,6 +27,9 @@ const Filter = () => {
   if (searchParams.get("year") == "1") {
     filterValues.module = module || "all";
     filterValues.semester = semester || "semester 1";
+  } else if (searchParams.get("year") == "2") {
+    filterValues.module = module || "all";
+    filterValues.unite = unite || "all";
   }
   // todo wrap it in useMemo
   useEffect(() => {
@@ -34,7 +40,10 @@ const Filter = () => {
   const handleFirstYear = (e) => {
     setModule(e.target.value);
     setSemester(activeFilter);
-    console.log(activeFilter);
+  };
+  const handleSecondYear = (e) => {
+    setModule(e.target.value);
+    setUnite(activeFilter);
   };
 
   return (
@@ -100,7 +109,7 @@ const Filter = () => {
                       type='radio'
                       name='fac'
                       value={fac}
-                      checked={fac == searchParams.get("faq")}
+                      checked={fac === searchParams.get("faq")}
                       onChange={(e) => setFaq(e.target.value)}
                       className='h-4 w-4 appearance-none rounded-sm border-2 border-primary-green checked:bg-primary-green'
                     />
@@ -188,6 +197,51 @@ const Filter = () => {
             </>
           ) : null}
           {/* second year filter */}
+          {searchParams.get("year") == "2" ? (
+            <>
+              {SecondYear.map((unite) => (
+                <div key={unite.unite}>
+                  <div
+                    className='flex items-center gap-2 text-2xl font-semibold'
+                    onClick={() =>
+                      setActiveFilter((prev) =>
+                        prev === unite.unite ? "" : unite.unite,
+                      )
+                    }
+                  >
+                    <span>
+                      <FaAngleLeft
+                        size={17}
+                        className={`${activeFilter === unite.unite && "-rotate-90"}`}
+                      />
+                    </span>
+                    {unite.unite}
+                  </div>
+                  <ul className='ml-12'>
+                    {activeFilter === unite.unite &&
+                      unite.module.map((module) => (
+                        <li key={module} className='flex items-center gap-2'>
+                          <span className='line-clamp-1 flex-grow'>
+                            {module}
+                          </span>
+                          <input
+                            type='radio'
+                            name='module'
+                            value={module}
+                            checked={
+                              module === searchParams.get("module") &&
+                              searchParams.get("unite") === unite.unite
+                            }
+                            onChange={handleSecondYear}
+                            className='h-4 w-4 appearance-none rounded-sm border-2 border-primary-green checked:bg-primary-green'
+                          />
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              ))}
+            </>
+          ) : null}
         </div>
       </div>
       <button
@@ -203,3 +257,4 @@ const Filter = () => {
 export default Filter;
 
 //todo: make it responsive
+//todo: refactor the first year to be like second one

@@ -9,8 +9,6 @@ import Filter from "../../components/Filter";
 
 const CoursesScreen = () => {
   const [courses, setCourses] = useState([]);
-  const [isOpen, setIsOpen] = useState(true);
-  const [activeFilter, setActiveFilter] = useState("");
   const { pageNumber, keyword } = useParams();
   const [searchParams] = useSearchParams();
 
@@ -25,19 +23,26 @@ const CoursesScreen = () => {
       ? searchParams.get("semester")
       : null;
 
+  const unit =
+    year >= 2 && searchParams.get("unit") !== "all"
+      ? searchParams.get("unit")
+      : null;
+
   const filtered = useMemo(() => {
     if (courses.length > 0) {
       return courses.filter((item) => {
         const yearMatch = item.year == year || !year;
         const faqMatch = item.faq == faq || !faq;
-        const moduleMatch = year == 1 ? item.module == module || !module : true;
-        const semesterMatch =
-          year == 1 ? item.semester == semester || !semester : true;
-        return yearMatch && faqMatch && moduleMatch && semesterMatch;
+        const moduleMatch = item.module == module || !module;
+        const semesterMatch = item.semester == semester || !semester;
+        const unitMatch = item.unit == unit || !unit;
+        return (
+          yearMatch && faqMatch && moduleMatch && semesterMatch && unitMatch
+        );
       });
     }
     return courses;
-  }, [year, faq, module, semester, courses]);
+  }, [year, faq, module, semester, unit, courses]);
 
   useEffect(() => {
     // Uncomment below axios call when backend is available
