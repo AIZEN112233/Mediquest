@@ -93,3 +93,13 @@ export const ThirdYear = [
     module: ["biochimie", "radiologie", "sémiologie", "physiopathologie"],
   },
 ];
+
+export const FourthYear = [
+  "infectiologie",
+  "neurologie",
+  "pneumologie",
+  "hématologie",
+  "cardiologie",
+  "gastrologie",
+  "oncologie",
+];
