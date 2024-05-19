@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { FormContainer, Loader, Message } from "../../components";
@@ -26,14 +26,14 @@ const UserEditScreen = () => {
 
   const navigate = useNavigate();
 
-  const submitHandler = async (e) => {
+  const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
     try {
       await updateUser({ userId, name, email, isAdmin });
       toast.success("user updated successfully");
       refetch();
       navigate("/admin/userlist");
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err?.data?.message || err.error);
     }
   };

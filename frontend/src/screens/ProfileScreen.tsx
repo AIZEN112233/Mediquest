@@ -42,7 +42,7 @@ const ProfileScreen = () => {
         }).unwrap();
         dispatch(setCredentials({ ...res }));
         toast.success("Profile updated successfully");
-      } catch (err) {
+      } catch (err: any) {
         toast.error(err?.data?.message || err.error);
       }
     }
@@ -124,7 +124,8 @@ const ProfileScreen = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
+              {/* fix order type */}
+              {orders.map((order: any) => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>

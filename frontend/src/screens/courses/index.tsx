@@ -25,13 +25,14 @@ const CoursesScreen = () => {
       : null;
 
   const unite =
-    year == 2 && year == 3 && searchParams.get("unite") !== "all"
+    (year === "2" || year === "3") && searchParams.get("unite") !== "all"
       ? searchParams.get("unite")
       : null;
 
   const filtered = useMemo(() => {
     if (courses.length > 0) {
-      return courses.filter((item) => {
+      //fix courses type
+      return courses.filter((item: any) => {
         const yearMatch = item.year == year || !year;
         const faqMatch = item.faq == faq || !faq;
         const moduleMatch = item.module == module || !module;
@@ -55,13 +56,14 @@ const CoursesScreen = () => {
 
     // Simulate a promise with new filtered data
     const fetchCourses = async () => {
-      const response = await new Promise((resolve) =>
+      //fix response type
+      const response: any = await new Promise((resolve) =>
         setTimeout(
           () => resolve({ data: { categorizedDocs: data.categorizedDocs } }),
           1000,
         ),
       );
-      setCourses(response.data.categorizedDocs);
+      setCourses(response?.data.categorizedDocs);
     };
     fetchCourses();
   }, []);
@@ -77,7 +79,8 @@ const CoursesScreen = () => {
         </div>
         <ul className='grid list-none grid-cols-5 gap-4 p-4 max-xl:grid-cols-3 max-md:grid-cols-2'>
           {filtered.length !== 0 ? (
-            filtered.map((document) => (
+            // fix document type
+            filtered.map((document: any) => (
               <li key={document._id}>
                 <div className='card-container'>
                   <ExamCard document={document} className='m-3' />

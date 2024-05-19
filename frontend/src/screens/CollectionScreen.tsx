@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import {
   Row,
@@ -40,18 +40,18 @@ const CollectionScreen = () => {
   const [updateCollection, { isLoading: loadingUpdate }] =
     useUpdateCollectionMutation();
 
-  const deleteCollectionHandler = async (id) => {
+  const deleteCollectionHandler = async (id?: string) => {
     if (window.confirm("Are you sure")) {
       try {
         await deleteCollection(id);
         navigate("/profile/userinfo");
-      } catch (err) {
+      } catch (err: any) {
         toast.error(err?.data?.message || err.error);
       }
     }
   };
 
-  const deleteDocumentHandler = async (documentId) => {
+  const deleteDocumentHandler = async (documentId: string) => {
     if (window.confirm("Are you sure")) {
       try {
         await deleteDocFromCollection({
@@ -60,13 +60,13 @@ const CollectionScreen = () => {
         }).unwrap();
         toast.success("document deleted");
         refetch();
-      } catch (err) {
+      } catch (err: any) {
         toast.error(err?.data?.message || err.error);
       }
     }
   };
 
-  const editCollectionName = async (e) => {
+  const editCollectionName = async (e: FormEvent) => {
     e.preventDefault();
     try {
       await updateCollection({
@@ -76,7 +76,7 @@ const CollectionScreen = () => {
       setShowInput(!showInput); // NOTE: here we need to unwrap the Promise to catch any rejection in our catch block
       refetch();
       // navigate("/admin/documentlist");
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err?.data?.message || err.error);
     }
   };
@@ -86,13 +86,13 @@ const CollectionScreen = () => {
       <div
         className='collection-container'
         style={{
-          backgoundColor: "#f1f2f5",
+          backgroundColor: "#f1f2f5",
           paddingTop: "85px",
         }}
       >
         {isLoading ? (
           <div style={{ marginTop: "10vh" }} className='mt-4'>
-            <Loader className='mt-4' />
+            <Loader />
           </div>
         ) : error ? (
           <Message variant='danger'>{error.data.message}</Message>
@@ -198,36 +198,39 @@ const CollectionScreen = () => {
                         <Message>collection is empty</Message>
                       ) : (
                         <ListGroup variant='flush'>
-                          {collection.collectionItems.map((item, index) => (
-                            <ListGroup.Item key={index}>
-                              <Row>
-                                <Col md={2}>
-                                  <Image
-                                    src={item.image}
-                                    alt={item.name}
-                                    fluid
-                                    rounded
-                                  />
-                                </Col>
-                                <Col md={5} className='mt-4'>
-                                  <Link to={`/document/${item.document}`}>
-                                    {item.name}
-                                  </Link>
-                                </Col>
-                                <Col md={2} className='mt-3'>
-                                  <Button
-                                    type='button'
-                                    variant='light'
-                                    onClick={() =>
-                                      deleteDocumentHandler(item.document)
-                                    }
-                                  >
-                                    <FaTrash />
-                                  </Button>
-                                </Col>
-                              </Row>
-                            </ListGroup.Item>
-                          ))}
+                          {/* fix item type */}
+                          {collection.collectionItems.map(
+                            (item: any, index: number) => (
+                              <ListGroup.Item key={index}>
+                                <Row>
+                                  <Col md={2}>
+                                    <Image
+                                      src={item.image}
+                                      alt={item.name}
+                                      fluid
+                                      rounded
+                                    />
+                                  </Col>
+                                  <Col md={5} className='mt-4'>
+                                    <Link to={`/document/${item.document}`}>
+                                      {item.name}
+                                    </Link>
+                                  </Col>
+                                  <Col md={2} className='mt-3'>
+                                    <Button
+                                      type='button'
+                                      variant='light'
+                                      onClick={() =>
+                                        deleteDocumentHandler(item.document)
+                                      }
+                                    >
+                                      <FaTrash />
+                                    </Button>
+                                  </Col>
+                                </Row>
+                              </ListGroup.Item>
+                            ),
+                          )}
                         </ListGroup>
                       )}
                     </ListGroup.Item>

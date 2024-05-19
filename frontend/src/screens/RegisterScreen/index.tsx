@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Spinner, Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +22,7 @@ const RegisterScreen = () => {
   const [showOTPinput, setShowOTPinput] = useState(false);
   const [timerCount, setTimer] = useState(60);
   const [OTPinput, setOTPinput] = useState("");
-  const [otpCode, setOTPCode] = useState();
+  const [otpCode, setOTPCode] = useState<number | null>();
 
   const [disable, setDisable] = useState(true);
 
@@ -54,7 +54,7 @@ const RegisterScreen = () => {
     return () => clearInterval(interval);
   }, [navigate, redirect, userInfoMediquest, disable]);
 
-  const submitHandler = async (e) => {
+  const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
@@ -64,13 +64,13 @@ const RegisterScreen = () => {
         const res = await register({ name, email, password }).unwrap();
         dispatch(setCredentials({ ...res }));
         navigate(redirect);
-      } catch (err) {
+      } catch (err: any) {
         toast.error(err?.data?.message || err.error);
       }
     }
   };
 
-  const sendConfirmationCode = async (e) => {
+  const sendConfirmationCode = async (e: FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
@@ -85,7 +85,7 @@ const RegisterScreen = () => {
           await sendCode({ recipient_email: email, OTP: otp }).unwrap();
           toast.success("A Confirmation Code is sent to your email");
           setShowOTPinput(true);
-        } catch (err) {
+        } catch (err: any) {
           toast.error(err?.data?.message || err.error);
         }
       } else {
@@ -105,12 +105,12 @@ const RegisterScreen = () => {
         setDisable(true);
         setTimer(60);
         toast.success("A new Code has succesfully been sent to your email.");
-      } catch (err) {
+      } catch (err: any) {
         toast.error(err?.data?.message || err.error);
       }
     }
   };
-  const verfiyCode = async (e) => {
+  const verfiyCode = async (e: FormEvent) => {
     e.preventDefault();
 
     if (parseInt(OTPinput) === otpCode) {
@@ -118,7 +118,7 @@ const RegisterScreen = () => {
         const res = await register({ name, email, password }).unwrap();
         dispatch(setCredentials({ ...res }));
         navigate(redirect);
-      } catch (err) {
+      } catch (err: any) {
         toast.error(err?.data?.message || err.error);
       }
     } else {

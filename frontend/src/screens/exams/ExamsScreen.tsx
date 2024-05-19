@@ -21,7 +21,7 @@ const ExamsScreen = () => {
   const [filterDocuments, { isLoading: loadingFiltered }] =
     useFilterDocumentsMutation();
 
-  const handleChange = async (event) => {
+  const handleChange = async (event: any) => {
     event.preventDefault();
     if (!event.target.value) {
       setExams(data);
@@ -34,7 +34,7 @@ const ExamsScreen = () => {
           year: event.target.value,
         }).unwrap();
         setExams(newDocuments);
-      } catch (error) {
+      } catch (error: any) {
         toast.error(error?.data?.message || error.error);
       }
     }

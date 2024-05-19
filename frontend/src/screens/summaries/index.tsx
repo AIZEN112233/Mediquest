@@ -11,7 +11,8 @@ import "../exams/ExamsSCreen.css";
 import { ExamCard, Loader, Message } from "../../components";
 
 const SummariesScreen = () => {
-  const [summaries, setSummaries] = useState();
+  //fix summaries type
+  const [summaries, setSummaries] = useState<any>();
   const [isOpen, setIsOpen] = useState(true);
 
   const { pageNumber, keyword } = useParams();
@@ -90,7 +91,8 @@ const SummariesScreen = () => {
             </Message>
           ) : (
             <Row className='m-2'>
-              {summaries?.categorizedDocs.map((document) => (
+              {/* fix document type */}
+              {summaries?.categorizedDocs.map((document: any) => (
                 <Col key={document._id} sm={12} md={5} lg={4} xl={3}>
                   <div className='card-container'>
                     <ExamCard document={document} className='m-3' />

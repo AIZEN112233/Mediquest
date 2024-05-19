@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Row, Col, ListGroup, Card, Button, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
@@ -16,7 +16,7 @@ const ResetPassword = () => {
 
   const [resetPassword, { isLoading }] = useResetPasswordMutation();
 
-  const submitHandler = async (e) => {
+  const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
@@ -31,7 +31,7 @@ const ResetPassword = () => {
         setShowMessage(true);
         localStorage.removeItem("resetPassword");
         toast.success("Password updated successfully");
-      } catch (err) {
+      } catch (err: any) {
         toast.error(err?.data?.message || err.error);
       }
     }

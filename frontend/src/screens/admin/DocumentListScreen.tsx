@@ -20,12 +20,12 @@ const DocumentListScreen = () => {
   const [deleteDocument, { isLoading: loadingDelete }] =
     useDeleteDocumentMutation();
 
-  const deleteHandler = async (id) => {
+  const deleteHandler = async (id: string) => {
     if (window.confirm("Are you sure")) {
       try {
         await deleteDocument(id);
         refetch();
-      } catch (err) {
+      } catch (err: any) {
         toast.error(err?.data?.message || err.error);
       }
     }
@@ -39,7 +39,7 @@ const DocumentListScreen = () => {
       try {
         await createDocument();
         refetch();
-      } catch (err) {
+      } catch (err: any) {
         toast.error(err?.data?.message || err.error);
       }
     }
@@ -108,7 +108,8 @@ const DocumentListScreen = () => {
                 </tr>
               </thead>
               <tbody>
-                {data.documents.map((document) => (
+                {/* fix document type */}
+                {data.documents.map((document: any) => (
                   <tr key={document._id}>
                     <td>{document._id}</td>
                     <td>{document.name}</td>

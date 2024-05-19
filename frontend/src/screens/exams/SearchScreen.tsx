@@ -37,7 +37,8 @@ const ExamsScreen = () => {
             </Message>
           ) : (
             <Row className='m-1'>
-              {data?.documents.map((document) => (
+              {/* fix document type */}
+              {data?.documents.map((document: any) => (
                 <Col key={document._id} sm={12} md={5} lg={4} xl={3}>
                   <div
                     className='card-container'

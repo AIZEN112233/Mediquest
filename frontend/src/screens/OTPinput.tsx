@@ -32,7 +32,7 @@ export default function OTPinput() {
         setDisable(true);
         setTimer(60);
         toast.success("A new OTP has succesfully been sent to your email.");
-      } catch (err) {
+      } catch (err: any) {
         toast.error(err?.data?.message || err.error);
       }
     }
@@ -73,7 +73,7 @@ export default function OTPinput() {
       <div
         className='container-forgot'
         style={{
-          backgoundColor: "#f1f2f5",
+          backgroundColor: "#f1f2f5",
         }}
       >
         <Row
@@ -81,7 +81,7 @@ export default function OTPinput() {
           style={{
             paddingTop: "7rem",
             paddingBottom: "7rem",
-            backgoundColor: "#f1f2f5",
+            backgroundColor: "#f1f2f5",
             height: "100vh",
             color: "black",
           }}
@@ -102,14 +102,14 @@ export default function OTPinput() {
 
                 <ListGroup.Item>
                   <input
-                    maxLength='1'
+                    maxLength={1}
                     type='text'
                     name=''
                     id=''
                     className='otp-input rounded'
                     onChange={(e) =>
                       setOTPinput([
-                        e.target.value,
+                        Number(e.target.value),
                         OTPinput[1],
                         OTPinput[2],
                         OTPinput[3],
@@ -117,7 +117,7 @@ export default function OTPinput() {
                     }
                   ></input>
                   <input
-                    maxLength='1'
+                    maxLength={1}
                     type='text'
                     name=''
                     id=''
@@ -125,14 +125,14 @@ export default function OTPinput() {
                     onChange={(e) =>
                       setOTPinput([
                         OTPinput[0],
-                        e.target.value,
+                        Number(e.target.value),
                         OTPinput[2],
                         OTPinput[3],
                       ])
                     }
                   ></input>
                   <input
-                    maxLength='1'
+                    maxLength={1}
                     type='text'
                     name=''
                     id=''
@@ -141,24 +141,23 @@ export default function OTPinput() {
                       setOTPinput([
                         OTPinput[0],
                         OTPinput[1],
-                        e.target.value,
+                        Number(e.target.value),
                         OTPinput[3],
                       ])
                     }
                   ></input>
                   <input
-                    maxLength='1'
+                    maxLength={1}
                     type='text'
                     name=''
                     id=''
                     className='otp-input rounded'
-                    rounded
                     onChange={(e) =>
                       setOTPinput([
                         OTPinput[0],
                         OTPinput[1],
                         OTPinput[2],
-                        e.target.value,
+                        Number(e.target.value),
                       ])
                     }
                   ></input>

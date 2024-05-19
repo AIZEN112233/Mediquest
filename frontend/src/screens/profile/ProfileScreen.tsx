@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { Form, Image, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -55,19 +55,21 @@ const ProfileScreen = () => {
     width,
   ]);
 
-  const uploadFileHandler = async (e) => {
+  const uploadFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
     const formData = new FormData();
+    if (!(e.target.files && e.target.files[0])) return;
+
     formData.append("image", e.target.files[0]);
     try {
       const res = await uploadUserImage(formData).unwrap();
       toast.success(res.message);
       setImage(res.image);
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err?.data?.message || err?.data?.error);
     }
   };
   const dispatch = useDispatch();
-  const submitHandler = async (e) => {
+  const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
@@ -81,7 +83,7 @@ const ProfileScreen = () => {
         }).unwrap();
         dispatch(setCredentials({ ...res }));
         toast.success("Profile updated successfully");
-      } catch (err) {
+      } catch (err: any) {
         toast.error(err?.data?.message || err.error);
       }
     }
@@ -156,7 +158,7 @@ const ProfileScreen = () => {
                     }}
                   />
                   <Form.Control
-                    label='Choose File'
+                    title='Choose File'
                     className='file:font-semibold file:text-black'
                     onChange={uploadFileHandler}
                     type='file'

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent, ChangeEvent } from "react";
 //import Form from "react-bootstrap/Form";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
@@ -39,7 +39,7 @@ const ProductEditScreen = () => {
 
   const navigate = useNavigate();
 
-  const submitHandler = async (e) => {
+  const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
     try {
       await updateDocument({
@@ -54,7 +54,7 @@ const ProductEditScreen = () => {
       toast.success("Document updated");
       refetch();
       navigate("/admin/documentlist");
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err?.data?.message || err.error);
     }
   };
@@ -70,26 +70,31 @@ const ProductEditScreen = () => {
     }
   }, [document]);
 
-  const uploadFileHandler = async (e) => {
+  const uploadFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
     const formData = new FormData();
+    if (!(e.target.files && e.target.files[0])) return;
+
     formData.append("image", e.target.files[0]);
     try {
       const res = await uploadDocumentImage(formData).unwrap();
       toast.success(res.message);
       setImage(res.image);
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err?.data?.message || err.error);
     }
   };
 
-  const uploadPdfHandler = async (e) => {
+  const uploadPdfHandler = async (e: ChangeEvent<HTMLInputElement>) => {
     const formData = new FormData();
+    if (!(e.target.files && e.target.files[0])) {
+      return;
+    }
     formData.append("pdf", e.target.files[0]);
     try {
       const res = await uploadDocumentFile(formData).unwrap();
       toast.success(res.message);
       setPdf(res.file);
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err?.data?.message || err?.data?.error);
     }
   };
@@ -137,7 +142,7 @@ const ProductEditScreen = () => {
                   onChange={(e) => setImage(e.target.value)}
                 ></Form.Control>
                 <Form.Control
-                  label='Choose File'
+                  title='Choose File'
                   onChange={uploadFileHandler}
                   type='file'
                 ></Form.Control>
@@ -165,7 +170,7 @@ const ProductEditScreen = () => {
                   onChange={(e) => setPdf(e.target.value)}
                 ></Form.Control>
                 <Form.Control
-                  label='Choose File'
+                  title='Choose File'
                   onChange={uploadPdfHandler}
                   type='file'
                 ></Form.Control>

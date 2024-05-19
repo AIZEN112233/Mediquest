@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
@@ -59,7 +59,7 @@ const DocumentScreen = () => {
   const [deleteComment, { isLoading: loadingDelete }] =
     useDeleteCommentMutation();
 
-  const downloadFile2 = async (e) => {
+  const downloadFile2 = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const res = await downloadDocument({ documentId });
@@ -74,12 +74,12 @@ const DocumentScreen = () => {
       link.download = "file.pdf";
       // link.download = res.headers["content-disposition"].split("filename=")[1];
       link.click();
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err?.data?.message || err.error);
     }
   };
 
-  const downloadFile = async (e) => {
+  const downloadFile = async (e: FormEvent) => {
     e.preventDefault();
     if (userInfoMediquest) {
       setLoading(true);
@@ -110,7 +110,7 @@ const DocumentScreen = () => {
           link.click();
 
           // Clean up and remove the link
-          link.parentNode.removeChild(link);
+          link?.parentNode?.removeChild(link);
         })
         .catch((error) => {
           if (error.response && error.response.status === 404) {
@@ -134,7 +134,7 @@ const DocumentScreen = () => {
     errorCollections,
   } = useGetMyCollectionsQuery();
 
-  const submitHandler = async (e) => {
+  const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
@@ -147,7 +147,7 @@ const DocumentScreen = () => {
       setRating(0);
       setComment("");
       toast.success("Review created successfully");
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err?.data?.message || err.error);
     }
   };
@@ -159,12 +159,12 @@ const DocumentScreen = () => {
       }).unwrap();
       refetch();
       toast.success("Review deleted successfully");
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err?.data?.message || err.error);
     }
   };
 
-  const addToCollectionHandler = async (id) => {
+  const addToCollectionHandler = async (id: string) => {
     try {
       await addMoreDocs({
         collectionId: id,
@@ -174,7 +174,7 @@ const DocumentScreen = () => {
       }).unwrap();
       navigate(`/collection/${id}`);
       toast.success("Added to collection successfully");
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err?.data?.message || err.error);
     }
   };
@@ -185,7 +185,7 @@ const DocumentScreen = () => {
       }).unwrap();
       navigate(`/collection/${res._id}`);
       toast.success("collection created successfully");
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err);
     }
   };
@@ -336,7 +336,8 @@ const DocumentScreen = () => {
                           </Message>
                         ) : userInfoMediquest ? (
                           <>
-                            {collections?.map((collection) => (
+                            {/* fix collection type */}
+                            {collections?.map((collection: any) => (
                               <Row key={collection._id} className='mt-2 p-2'>
                                 <Col md={9}>
                                   <strong>{collection.title}</strong>
@@ -425,7 +426,8 @@ const DocumentScreen = () => {
                 <h2>Reviews</h2>
                 {data.reviews.length === 0 && <Message>No Reviews</Message>}
                 <ListGroup variant='flush'>
-                  {data.reviews.map((review) => (
+                  {/* fix review type */}
+                  {data.reviews.map((review: any) => (
                     <ListGroup.Item key={review._id}>
                       <Row>
                         <Col md={10}>
@@ -477,7 +479,7 @@ const DocumentScreen = () => {
                             as='select'
                             required
                             value={rating}
-                            onChange={(e) => setRating(e.target.value)}
+                            onChange={(e) => setRating(Number(e.target.value))}
                           >
                             <option value=''>Select...</option>
                             <option value='1'>1 - Poor</option>
@@ -491,7 +493,7 @@ const DocumentScreen = () => {
                           <Form.Label>Comment</Form.Label>
                           <Form.Control
                             as='textarea'
-                            row='3'
+                            rows={3}
                             required
                             value={comment}
                             onChange={(e) => setComment(e.target.value)}

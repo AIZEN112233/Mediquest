@@ -32,7 +32,8 @@ const ProfileScreen = () => {
             </Row>
           ) : (
             <Row className='m-2'>
-              {data?.map((collection) => (
+              {/* fix collection type */}
+              {data?.map((collection: any) => (
                 <Col key={collection._id} sm={6} md={4}>
                   <div className='collection-card mx-3'>
                     <LinkContainer

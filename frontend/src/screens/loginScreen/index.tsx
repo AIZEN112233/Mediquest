@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Row, Col, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,13 +36,13 @@ const LoginScreen = () => {
     }
   }, [navigate, redirect, userInfoMediquest]);
 
-  const submitHandler = async (e) => {
+  const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err?.data?.message || err.error);
     }
   };
@@ -56,7 +56,7 @@ const LoginScreen = () => {
         localStorage.setItem("otpCode", JSON.stringify(true));
         setTimeout(() => localStorage.removeItem("otpCode"), 600000);
         navigate("/forgotpassword", { state: data });
-      } catch (err) {
+      } catch (err: any) {
         toast.error(err?.data?.message || err.error);
       }
     } else {
@@ -116,7 +116,7 @@ const LoginScreen = () => {
             <Button text='START LEARNING' type='submit' />
           </div>
         </form>
-        {loadingOTP && <Loader style={{ color: "white !important" }} />}
+        {loadingOTP && <Loader />}
         {isLoading && (
           <Spinner
             animation='border'

@@ -17,7 +17,7 @@ const UserListScreen = () => {
       try {
         await deleteUser(id);
         refetch();
-      } catch (err) {
+      } catch (err: any) {
         toast.error(err?.data?.message || err.error);
       }
     }
@@ -62,7 +62,8 @@ const UserListScreen = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => (
+              {/* fix user type */}
+              {users.map((user: any) => (
                 <tr key={user._id}>
                   <td>{user._id}</td>
                   <td>{user.name}</td>
