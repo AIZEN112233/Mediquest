@@ -25,7 +25,8 @@ const ProfileScreen = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState("100vh");
 
-  const { userInfoMediquest } = useSelector((state) => state.auth);
+  //fix state type
+  const { userInfoMediquest } = useSelector((state: any) => state.auth);
 
   const [uploadUserImage, { isLoading: loadingUpload }] =
     useUploadUserImageMutation();

@@ -6,7 +6,7 @@ import { useGetMyCollectionsQuery } from "../../slices/collectionsApiSlice";
 import "./ProfileScreen.css";
 import "../exams/ExamsSCreen.css";
 const ProfileScreen = () => {
-  const { data, isLoading, error } = useGetMyCollectionsQuery();
+  const { data, isLoading, error } = useGetMyCollectionsQuery("");
 
   return (
     <>

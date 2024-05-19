@@ -24,7 +24,8 @@ const LoginScreen = () => {
   const [login, { isLoading }] = useLoginMutation();
   const [sendOTP, { isLoading: loadingOTP }] = useSendOTPMutation();
 
-  const { userInfoMediquest } = useSelector((state) => state.auth);
+  //fix state type
+  const { userInfoMediquest } = useSelector((state: any) => state.auth);
 
   const { search } = useLocation();
   const sp = new URLSearchParams(search);

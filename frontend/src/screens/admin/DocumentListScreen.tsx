@@ -37,7 +37,8 @@ const DocumentListScreen = () => {
   const createDocumentHandler = async () => {
     if (window.confirm("Are you sure you want to create a new document?")) {
       try {
-        await createDocument();
+        // fix args errors
+        await createDocument({});
         refetch();
       } catch (err: any) {
         toast.error(err?.data?.message || err.error);

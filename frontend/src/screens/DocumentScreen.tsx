@@ -132,7 +132,7 @@ const DocumentScreen = () => {
     data: collections,
     isLoading: loadingCollections,
     errorCollections,
-  } = useGetMyCollectionsQuery();
+  } = useGetMyCollectionsQuery("");
 
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();

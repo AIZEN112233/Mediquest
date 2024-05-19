@@ -8,11 +8,11 @@ import {
 } from "../../slices/usersApiSlice";
 import { toast } from "react-toastify";
 const UserListScreen = () => {
-  const { data: users, refetch, isLoading, error } = useGetUsersQuery();
+  const { data: users, refetch, isLoading, error } = useGetUsersQuery("");
 
   const [deleteUser] = useDeleteUserMutation();
 
-  const deleteHandler = async (id) => {
+  const deleteHandler = async (id: string) => {
     if (window.confirm("Are you sure")) {
       try {
         await deleteUser(id);

@@ -5,7 +5,7 @@ import { Message, ExamCard, Loader } from "../../components";
 import "../exams/ExamsSCreen.css";
 import { BsFillHeartFill } from "react-icons/bs";
 const ProfileScreen = () => {
-  const { data: userProfile, isLoading, error } = useGetUserProfileQuery();
+  const { data: userProfile, isLoading, error } = useGetUserProfileQuery("");
 
   return (
     <>
@@ -36,7 +36,8 @@ const ProfileScreen = () => {
             </Row>
           ) : (
             <Row className='  justify-content-center'>
-              {userProfile?.favourites.map((document) => (
+              {/* fix document type */}
+              {userProfile?.favourites.map((document: any) => (
                 <Col key={document._id} sm={6} md={5} lg={4} xl={3}>
                   <div className='card-container'>
                     <ExamCard document={document} />

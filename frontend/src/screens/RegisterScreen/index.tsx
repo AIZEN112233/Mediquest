@@ -32,7 +32,8 @@ const RegisterScreen = () => {
   const [register, { isLoading }] = useRegisterMutation();
   const [sendCode, { isLoading: LoadingOTP }] = useSendCodeMutation();
 
-  const { userInfoMediquest } = useSelector((state) => state.auth);
+  //fix state type
+  const { userInfoMediquest } = useSelector((state: any) => state.auth);
 
   const { search } = useLocation();
   const sp = new URLSearchParams(search);
