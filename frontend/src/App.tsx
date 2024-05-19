@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import { createContext } from "react";
 import "react-toastify/dist/ReactToastify.css";
 
-export const RecoveryContext = createContext();
+export const RecoveryContext = createContext(undefined);
 
 const App = () => {
   return (

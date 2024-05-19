@@ -1,5 +1,12 @@
 import { FaArrowRightLong } from "react-icons/fa6";
-const StyledButton = ({ text, type, style }) => {
+
+type StyledButtonProps = {
+  text: string;
+  type: "submit" | "reset" | "button" | undefined;
+  style: React.CSSProperties | undefined;
+};
+
+const StyledButton = ({ text, type, style }: StyledButtonProps) => {
   return (
     <div>
       <button

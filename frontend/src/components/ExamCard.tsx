@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
 import { toast } from "react-toastify";
@@ -10,9 +10,10 @@ import {
   useAddToFavMutation,
 } from "../slices/usersApiSlice";
 
-const ExamCard = ({ document }) => {
+//fix get the document type
+const ExamCard = ({ document }: any) => {
   const [likes, setLikes] = useState(document.numLikes);
-  const [color, setColor] = useState();
+  const [color, setColor] = useState<string>();
 
   const [addToFav] = useAddToFavMutation();
   const { _id: documentId } = document;
@@ -20,13 +21,13 @@ const ExamCard = ({ document }) => {
   const { data: userProfile, refetch } = useGetUserProfileQuery();
 
   useEffect(() => {
-    const found = userProfile?.favourites.find((obj) => {
+    const found = userProfile?.favourites.find((obj: any) => {
       return obj._id === document._id;
     });
     setColor(found ? "#fa3e5f" : "#75dab4");
   }, [document._id, userProfile?.favourites]);
 
-  const submitHandler = async (e) => {
+  const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
@@ -43,7 +44,7 @@ const ExamCard = ({ document }) => {
       if (color === "#75dab4") setColor("#fa3e5f");
       else if (color === "#fa3e5f") setColor("#75dab4");
       setLikes(res.likes);
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err?.data?.message || err.error);
     }
   };

@@ -38,6 +38,7 @@ const Filter = () => {
   } else if (searchParams.get("year") >= "4") {
     filterValues.module = module || "all";
   }
+  //todo fix type error
   // todo wrap it in useMemo
   useEffect(() => {
     setSearchParams(filterValues);

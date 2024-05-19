@@ -1,7 +1,19 @@
 import { Pagination } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
-const Paginate = ({ pages, page, isAdmin = false, keyword = "" }) => {
+type PaginateProps = {
+  pages: number;
+  page: number;
+  isAdmin: boolean;
+  keyword: string;
+};
+
+const Paginate = ({
+  pages,
+  page,
+  isAdmin = false,
+  keyword = "",
+}: PaginateProps) => {
   return (
     pages > 1 && (
       <Pagination>

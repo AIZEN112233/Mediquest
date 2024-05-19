@@ -1,4 +1,11 @@
-const Input = ({ handleChange, value, title, name }) => {
+type InputProps = {
+  handleChange: () => void;
+  value: string;
+  title: string;
+  name: string;
+};
+
+const Input = ({ handleChange, value, title, name }: InputProps) => {
   return (
     <label className='sidebar-label-containe flex items-center gap-4 py-2 max-md:mx-2 max-md:block md:mx-4'>
       <input

@@ -1,6 +1,12 @@
 import { Helmet } from "react-helmet-async";
 
-const Meta = ({ title, description, keywords }) => {
+type MetaProps = {
+  title: string;
+  description: string;
+  keywords: string;
+};
+
+const Meta = ({ title, description, keywords }: MetaProps) => {
   return (
     <Helmet>
       <title>{title}</title>

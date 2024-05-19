@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
@@ -10,7 +10,7 @@ const SearchBox = () => {
   // FIX: uncontrolled input - urlKeyword may be undefined
   const [keyword, setKeyword] = useState(urlKeyword || "");
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: FormEvent) => {
     e.preventDefault();
     if (keyword.trim()) {
       navigate(`/search/${keyword.trim()}`);
@@ -33,11 +33,7 @@ const SearchBox = () => {
         placeholder='Search...'
         className='bg-transparent focus-within:outline-none'
       />
-      <IoIosSearch
-        type='submit'
-        variant='outline-light'
-        className='text-[25px] text-white'
-      />
+      <IoIosSearch type='submit' className='text-[25px] text-white' />
     </form>
   );
 };
