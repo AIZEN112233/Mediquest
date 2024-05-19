@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-import { useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { FaAngleLeft } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 import {
@@ -12,17 +12,25 @@ import {
   years,
 } from "../constants";
 
+type FilterValuesType = {
+  year: string;
+  faq: string;
+  module?: string;
+  semester?: string;
+  unite?: string;
+};
+
 const Filter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [year, setYear] = useState();
-  const [faq, setFaq] = useState();
-  const [module, setModule] = useState();
-  const [semester, setSemester] = useState();
+  const [year, setYear] = useState("");
+  const [faq, setFaq] = useState("");
+  const [module, setModule] = useState("");
+  const [semester, setSemester] = useState("");
   const [activeFilter, setActiveFilter] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [unite, setUnite] = useState();
+  const [unite, setUnite] = useState("");
 
-  const filterValues = {
+  const filterValues: FilterValuesType = {
     year: year || "all",
     faq: faq || "all",
   };
@@ -35,7 +43,7 @@ const Filter = () => {
   ) {
     filterValues.module = module || "all";
     filterValues.unite = unite || "all";
-  } else if (searchParams.get("year") >= "4") {
+  } else if (searchParams.get("year") && searchParams.get("year")! >= "4") {
     filterValues.module = module || "all";
   }
   //todo fix type error
@@ -45,11 +53,11 @@ const Filter = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year, faq, module, semester]);
 
-  const handleFirstYear = (e) => {
+  const handleFirstYear = (e: ChangeEvent<HTMLInputElement>) => {
     setModule(e.target.value);
     setSemester(activeFilter);
   };
-  const handleSecondYear = (e) => {
+  const handleSecondYear = (e: ChangeEvent<HTMLInputElement>) => {
     setModule(e.target.value);
     setUnite(activeFilter);
   };
@@ -126,10 +134,10 @@ const Filter = () => {
             </ul>
           </div>
           {/* the first year filter */}
-          {searchParams.get("year") == 1 ? (
+          {searchParams.get("year") === "1" ? (
             <>
               {FirstYear.map((year) => (
-                <div key={year.module}>
+                <div key={year.semester}>
                   <div
                     className='flex items-center gap-2 text-2xl font-semibold'
                     onClick={() =>

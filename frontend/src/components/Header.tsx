@@ -9,7 +9,8 @@ import { HiArrowLongLeft } from "react-icons/hi2";
 import SearchBox from "./SearchBox";
 
 const Header = () => {
-  const { userInfoMediquest } = useSelector((state) => state.auth);
+  // fix state type
+  const { userInfoMediquest } = useSelector((state: any) => state.auth);
   const [isMenuOpen, setIsMenuOpen] = useState(true);
 
   const navigate = useNavigate();
@@ -18,8 +19,9 @@ const Header = () => {
   const [logoutApi] = useLogoutMutation();
   const logoutHandler = async () => {
     try {
-      await logoutApi();
-      dispatch(logout());
+      //fix exacting args
+      await logoutApi("");
+      dispatch(logout(""));
       navigate("/login");
     } catch (error) {
       console.log(error);

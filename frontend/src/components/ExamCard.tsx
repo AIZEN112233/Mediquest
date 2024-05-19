@@ -18,7 +18,7 @@ const ExamCard = ({ document }: any) => {
   const [addToFav] = useAddToFavMutation();
   const { _id: documentId } = document;
 
-  const { data: userProfile, refetch } = useGetUserProfileQuery();
+  const { data: userProfile, refetch } = useGetUserProfileQuery("User");
 
   useEffect(() => {
     const found = userProfile?.favourites.find((obj: any) => {
