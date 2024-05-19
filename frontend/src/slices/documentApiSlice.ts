@@ -18,8 +18,7 @@ export const documentApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      keepUnusedDataFor: 5,
-      providesTags: ["Document"],
+      // keepUnusedDataFor: 5,
     }),
     getDocumentDetails: builder.query({
       query: (id) => ({
@@ -61,7 +60,6 @@ export const documentApiSlice = apiSlice.injectEndpoints({
         url: `${DOCS_URL}/${documentId}`,
         method: "DELETE",
       }),
-      providesTags: ["Document"],
     }),
     createReview: builder.mutation({
       query: (data) => ({

@@ -79,13 +79,13 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
       invalidatesTags: ["Document"],
-      providesTags: ["Document"],
+      // providesTags: ["User"],
     }),
     favList: builder.query({
       query: () => ({
         url: `${USERS_URL}/favourites`,
       }),
-      invalidatesTags: ["User"],
+      // invalidatesTags: ["User"],
     }),
     sendOTP: builder.mutation({
       query: (data) => ({
@@ -119,7 +119,7 @@ export const {
   useGetUserProfileQuery,
   useUploadUserImageMutation,
   useAddToFavMutation,
-  useGetFavListQuery,
+  // useGetFavListQuery,
   useGetUsersQuery,
   useDeleteUserMutation,
   useUpdateUserMutation,

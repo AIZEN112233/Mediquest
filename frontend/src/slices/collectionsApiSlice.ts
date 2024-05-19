@@ -22,7 +22,7 @@ const collectionApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: ["Collections"],
+      invalidatesTags: ["Document"],
     }),
     deleteCollection: builder.mutation({
       query: (collectionId) => ({
@@ -36,7 +36,7 @@ const collectionApiSlice = apiSlice.injectEndpoints({
         method: "DELETE",
         body: data,
       }),
-      invalidatesTags: ["Collections"],
+      invalidatesTags: ["Document"],
     }),
     addMoreDocs: builder.mutation({
       query: (data) => ({
@@ -44,7 +44,7 @@ const collectionApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Collections"],
+      invalidatesTags: ["Document"],
     }),
     getMyCollections: builder.query({
       query: () => ({
