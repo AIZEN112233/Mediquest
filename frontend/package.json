@@ -28,7 +28,7 @@
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
-		"start": "vite",
+		"start": "tsc && vite",
 		"build": "vite build"
 	},
 	"eslintConfig": {
@@ -50,9 +50,14 @@
 		]
 	},
 	"devDependencies": {
-		"prettier": "^3.2.4",
-		"prettier-plugin-tailwindcss": "^0.5.11","postcss": "^8.4.33",
+		"@types/node": "^20.12.12",
+		"@types/react": "^18.3.2",
+		"@types/react-dom": "^18.3.0",
 		"autoprefixer": "^10.4.16",
-		"tailwindcss": "^3.4.1"
+		"postcss": "^8.4.33",
+		"prettier": "^3.2.4",
+		"prettier-plugin-tailwindcss": "^0.5.11",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5.4.5"
 	}
 }
