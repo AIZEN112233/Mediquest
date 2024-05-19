@@ -9,7 +9,7 @@ export const documentApiSlice = apiSlice.injectEndpoints({
         params: { keyword, pageNumber, category },
       }),
       keepUnusedDataFor: 5,
-      providesTags: ["Documents"],
+      providesTags: ["Document"],
     }),
 
     filterDocuments: builder.mutation({
@@ -19,7 +19,7 @@ export const documentApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
       keepUnusedDataFor: 5,
-      providesTags: ["Documents"],
+      providesTags: ["Document"],
     }),
     getDocumentDetails: builder.query({
       query: (id) => ({
@@ -40,7 +40,7 @@ export const documentApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: ["Documents"],
+      invalidatesTags: ["Document"],
     }),
     uploadDocumentImage: builder.mutation({
       query: (data) => ({
@@ -113,3 +113,5 @@ export const {
   useGetDownloadDocumentQuery,
   useDownloadDocumentMutation,
 } = documentApiSlice;
+
+// fix typing
