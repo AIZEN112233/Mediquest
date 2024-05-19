@@ -111,3 +111,5 @@ export const FourthYear = [
   "gastrologie",
   "oncologie",
 ];
+
+export const FifthYear = ['Endocrinologie','Gynécologie','Pédiatrie','OTR','Psychiatrie','Urologie néphrologie']
