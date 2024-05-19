@@ -128,7 +128,7 @@ const Filter = () => {
           {searchParams.get("year") == 1 ? (
             <>
               {FirstYear.map((year) => (
-                <div>
+                <div key={year.module}>
                   <div
                     className='flex items-center gap-2 text-2xl font-semibold'
                     onClick={() =>
