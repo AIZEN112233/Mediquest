@@ -4,8 +4,8 @@ import { LinkContainer } from "react-router-bootstrap";
 type PaginateProps = {
   pages: number;
   page: number;
-  isAdmin: boolean;
-  keyword: string;
+  isAdmin?: boolean;
+  keyword?: string;
 };
 
 const Paginate = ({
