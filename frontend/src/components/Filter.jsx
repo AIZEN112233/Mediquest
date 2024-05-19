@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { FaAngleLeft } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 import {
+  FifthYear,
   FirstYear,
   FourthYear,
   SecondYear,
@@ -34,7 +35,7 @@ const Filter = () => {
   ) {
     filterValues.module = module || "all";
     filterValues.unite = unite || "all";
-  } else if (searchParams.get("year") == "4") {
+  } else if (searchParams.get("year") >= "4") {
     filterValues.module = module || "all";
   }
   // todo wrap it in useMemo
@@ -283,6 +284,40 @@ const Filter = () => {
               <ul className='ml-6'>
                 {activeFilter === "module" &&
                   FourthYear.map((module) => (
+                    <li key={module} className='flex items-center gap-2'>
+                      <span className='flex-grow'>{module}</span>
+                      <input
+                        type='radio'
+                        name='module'
+                        value={module}
+                        checked={module == searchParams.get("module")}
+                        onChange={(e) => setModule(e.target.value)}
+                        className='h-4 w-4 appearance-none rounded-sm border-2 border-primary-green checked:bg-primary-green'
+                      />
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ) : null}
+          {searchParams.get("year") == "5" ? (
+            <div>
+              <div
+                className='flex items-center gap-2 text-2xl font-semibold'
+                onClick={() =>
+                  setActiveFilter((prev) => (prev === "module" ? "" : "module"))
+                }
+              >
+                <span>
+                  <FaAngleLeft
+                    size={17}
+                    className={`${activeFilter === "module" && "-rotate-90"}`}
+                  />
+                </span>
+                modules
+              </div>
+              <ul className='ml-6'>
+                {activeFilter === "module" &&
+                  FifthYear.map((module) => (
                     <li key={module} className='flex items-center gap-2'>
                       <span className='flex-grow'>{module}</span>
                       <input
